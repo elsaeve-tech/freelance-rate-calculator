@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Freelance Rate Calculator</title>
+  <meta name="description" content="Calculate your freelance hourly rate, daily rate, and project pricing based on your income goals, expenses, experience, and realistic billable hours.">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <p class="eyebrow">Freelancer Pricing Tool</p>
+      <h1>Freelance Rate Calculator</h1>
+      <p class="subtitle">Figure out what you actually need to charge — not just what feels comfortable.</p>
+<p class="trust-line">Based on real freelance workload assumptions, billable time, and pricing benchmarks.</p>
+
+      <div class="calculator">
+
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="income">Desired Annual Income ($)</label>
+            <input type="number" id="income" placeholder="60000">
+          </div>
+
+          <div class="input-group">
+            <label for="expenses">Monthly Expenses ($)</label>
+            <input type="number" id="expenses" placeholder="2000">
+          </div>
+
+          <div class="input-group">
+            <label for="hours">Hours Worked Per Week</label>
+            <input type="number" id="hours" placeholder="30">
+          </div>
+
+          <div class="input-group">
+            <label for="weeks">Weeks Worked Per Year</label>
+            <input type="number" id="weeks" placeholder="48">
+          </div>
+
+          <div class="input-group">
+            <label for="billable">Billable Time (%)</label>
+            <select id="billable">
+              <option value="40">40% — very admin heavy</option>
+              <option value="50">50% — common</option>
+              <option value="60" selected>60% — healthy target</option>
+              <option value="70">70% — very efficient</option>
+              <option value="80">80% — unusually high</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="experience">Experience Level</label>
+            <select id="experience">
+              <option value="0.9">Beginner</option>
+              <option value="1" selected>Intermediate</option>
+              <option value="1.15">Experienced</option>
+              <option value="1.3">Specialist / premium</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="calculate()">Calculate My Rate</button>
+
+        <div class="results" id="results" style="display:none;">
+          <div class="results-header">
+            <h2>Your Recommended Rates</h2>
+            <button class="secondary-btn" id="copyBtn" onclick="copyResults()">Copy Results</button>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-box">
+              <p class="summary-label">Hourly Rate</p>
+              <p class="summary-value">$<span id="hourly">0</span></p>
+            </div>
+
+            <div class="summary-box">
+              <p class="summary-label">Daily Rate</p>
+              <p class="summary-value">$<span id="daily">0</span></p>
+            </div>
+          </div>
+
+          <div id="tiered" class="info-box"></div>
+
+          <p id="insight" class="insight"></p>
+
+          <div id="projects" class="project-box"></div>
+
+          <div id="services" class="service-box"></div>
+
+          <div id="realityCheck" class="reality-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
