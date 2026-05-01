@@ -193,7 +193,6 @@
       gap: 10px;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 16px;
     }
 
     .btn {
@@ -295,25 +294,15 @@
     .stat span { color: var(--muted); font-size: .8rem; font-weight: 750; }
 
     .upgrade-card {
-  margin: 30px auto 40px;
-  padding: 24px;
-  max-width: 720px;
-  border-radius: 28px;
+      margin: 10px 0 26px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: center;
+      background: rgba(255,255,255,.52);
+    }
 
-  display: grid;
-  gap: 18px;
-
-  background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,250,242,0.85));
-  border: 1px solid rgba(39,36,31,.12);
-
-  box-shadow: 0 18px 50px rgba(39,36,31,.08);
-
-  text-align: left;
-}
-
-    .upgrade-card .cta-row {
-  justify-content: flex-start;
-}
     .upgrade-card h2 { font-size: 1.45rem; }
     .upgrade-card p { color: var(--muted); line-height: 1.55; margin: 0 0 12px; }
 
@@ -329,11 +318,11 @@
     }
 
     .upgrade-list li::before {
-  content: "•";
-  color: var(--olive);
-  font-weight: 900;
-  margin-right: 8px;
-}
+      content: "•";
+      color: var(--olive);
+      font-weight: 900;
+      margin-right: 8px;
+    }
 
     main { padding: 12px 0 60px; }
 
@@ -748,11 +737,8 @@
 
   <section class="wrap upgrade-card" aria-label="Optional paid upgrade">
     <div>
-      <h2 style="font-size:1.6rem;">Creative Freelancer Pack (optional)</h2>
+      <h2>Optional: Creative Freelancer Pack</h2>
       <p>The free tools should be enough to get started. If you want more polish and less second-guessing, the paid pack can include upgraded invoice styles, expanded scripts, pricing checklists, and deeper creative prompts.</p>
-      <p class="tiny" style="margin-top:-6px;">
-  This is for when you want to feel more confident sending things to clients — not just “good enough.”
-</p>
       <p class="tiny">Suggested price: $7–$12 one-time. Add your Gumroad, Payhip, or Etsy link here when ready.</p>
     </div>
     <div>
@@ -763,9 +749,7 @@
         <li>Pricing checklist before sending a quote</li>
       </ul>
       <div class="cta-row" style="margin-top:14px;">
-        <a class="btn secondary" href="#" id="paidPackLink">
-  View optional pack ($7)
-</a>
+        <a class="btn secondary" href="#" id="paidPackLink">Paid pack coming soon</a>
       </div>
     </div>
   </section>
@@ -1150,13 +1134,21 @@ Thank you!`
       }
     };
 
+    function $(id) {
+      return document.getElementById(id);
+    }
+
     function money(n) {
       return '$' + Math.round(n).toLocaleString();
     }
 
     function calculatePricing() {
-      const workType = document.getElementById('workType').value;
-      const data = pricingData[workType];
+      const workTypeEl = $('workType');
+      if (!workTypeEl) return;
+
+      const data = pricingData[workTypeEl.value];
+      if (!data) return;
+
       const base = data.base[state.scope];
       const mult = multipliers.experience[state.experience] * multipliers.client[state.client] * multipliers.timeline[state.timeline];
       const low = Math.round(base[0] * mult / 10) * 10;
@@ -1168,11 +1160,11 @@ Thank you!`
       state.lastRange = { low, high };
       state.lastSummary = `${data.label}: ${money(low)}–${money(high)}. ${data.summary}`;
 
-      document.getElementById('priceRange').textContent = `${money(low)}–${money(high)}`;
-      document.getElementById('priceSummary').textContent = data.summary;
-      document.getElementById('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
-      document.getElementById('rushFee').textContent = rushText;
-      document.getElementById('revisionNote').textContent = data.revisions;
+      if ($('priceRange')) $('priceRange').textContent = `${money(low)}–${money(high)}`;
+      if ($('priceSummary')) $('priceSummary').textContent = data.summary;
+      if ($('depositAmount')) $('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
+      if ($('rushFee')) $('rushFee').textContent = rushText;
+      if ($('revisionNote')) $('revisionNote').textContent = data.revisions;
 
       const notes = {
         beginner: 'If you are newer, keep the scope especially clear. A lower price should still have boundaries.',
@@ -1180,54 +1172,72 @@ Thank you!`
         experienced: 'Your experience has value. Price for judgment, taste, communication, and reliability — not just time.',
         premium: 'Premium pricing needs premium clarity: usage rights, polished process, strong presentation, and firm boundaries.'
       };
-      document.getElementById('confidenceNote').textContent = notes[state.experience];
+      if ($('confidenceNote')) $('confidenceNote').textContent = notes[state.experience];
     }
 
     function switchTab(tabId) {
       document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === tabId));
       document.querySelectorAll('[data-tab-target]').forEach(btn => btn.classList.toggle('active', btn.dataset.tabTarget === tabId));
-      document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const tool = $('tool');
+      if (tool) tool.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function showToast(message = 'Copied') {
-      const toast = document.getElementById('toast');
+      const toast = $('toast');
+      if (!toast) return;
       toast.textContent = message;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 1700);
     }
 
     function copyText(text, message) {
+      if (!navigator.clipboard) {
+        showToast('Copy not supported');
+        return;
+      }
       navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast('Copy failed'));
     }
 
     function updateInvoice() {
+      if (!$('invoicePreview')) return;
+
       const today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-      const amount = Number(document.getElementById('invoiceAmount').value || 0);
-      document.getElementById('previewBusiness').textContent = document.getElementById('businessName').value || 'Your Business Name';
-      document.getElementById('previewEmail').textContent = document.getElementById('businessEmail').value || 'hello@example.com';
-      document.getElementById('previewClient').textContent = document.getElementById('clientName').value || 'Client Name';
-      document.getElementById('previewInvoiceNumber').textContent = document.getElementById('invoiceNumber').value || 'INV-001';
-      document.getElementById('previewDescription').textContent = document.getElementById('projectDescription').value || 'Project description';
-      document.getElementById('previewAmount').textContent = money(amount);
-      document.getElementById('previewTotal').textContent = money(amount);
-      document.getElementById('previewDate').textContent = today;
-      document.getElementById('previewDueDate').textContent = document.getElementById('dueDate').value || '—';
-      document.getElementById('previewPaymentNotes').textContent = document.getElementById('paymentNotes').value || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
+      const amount = Number(($('invoiceAmount') && $('invoiceAmount').value) || 0);
+
+      if ($('previewBusiness')) $('previewBusiness').textContent = ($('businessName') && $('businessName').value) || 'Your Business Name';
+      if ($('previewEmail')) $('previewEmail').textContent = ($('businessEmail') && $('businessEmail').value) || 'hello@example.com';
+      if ($('previewClient')) $('previewClient').textContent = ($('clientName') && $('clientName').value) || 'Client Name';
+      if ($('previewInvoiceNumber')) $('previewInvoiceNumber').textContent = ($('invoiceNumber') && $('invoiceNumber').value) || 'INV-001';
+      if ($('previewDescription')) $('previewDescription').textContent = ($('projectDescription') && $('projectDescription').value) || 'Project description';
+      if ($('previewAmount')) $('previewAmount').textContent = money(amount);
+      if ($('previewTotal')) $('previewTotal').textContent = money(amount);
+      if ($('previewDate')) $('previewDate').textContent = today;
+      if ($('previewDueDate')) $('previewDueDate').textContent = ($('dueDate') && $('dueDate').value) || '—';
+      if ($('previewPaymentNotes')) $('previewPaymentNotes').textContent = ($('paymentNotes') && $('paymentNotes').value) || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
     }
 
     function renderScripts() {
-      const grid = document.getElementById('scriptsGrid');
+      const grid = $('scriptsGrid');
+      if (!grid) return;
       grid.innerHTML = scriptItems.map((item, index) => `
         <article class="script-card">
           <h3>${item.title}</h3>
           <div class="script-text" id="script-${index}">${item.text}</div>
-          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary small" onclick="copyText(document.getElementById('script-${index}').textContent, 'Script copied')">Copy script</button></div>
+          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary small" data-copy-script="${index}">Copy script</button></div>
         </article>
       `).join('');
+
+      document.querySelectorAll('[data-copy-script]').forEach(button => {
+        button.addEventListener('click', () => {
+          const script = $(`script-${button.dataset.copyScript}`);
+          if (script) copyText(script.textContent, 'Script copied');
+        });
+      });
     }
 
     function renderExamples() {
-      const grid = document.getElementById('examplesGrid');
+      const grid = $('examplesGrid');
+      if (!grid) return;
       grid.innerHTML = exampleItems.map(item => `
         <article class="example-card">
           <h3>${item.title}</h3>
@@ -1238,11 +1248,13 @@ Thank you!`
     }
 
     function generatePrompts() {
-      const type = document.getElementById('promptType').value;
-      const mood = document.getElementById('promptMood').value;
-      const audience = document.getElementById('promptAudience').value || 'this client';
+      const type = ($('promptType') && $('promptType').value) || 'logo';
+      const mood = ($('promptMood') && $('promptMood').value) || 'calm';
+      const audience = ($('promptAudience') && $('promptAudience').value) || 'this client';
       const prompts = promptBank[type][mood];
-      const output = document.getElementById('promptOutput');
+      const output = $('promptOutput');
+      if (!output) return;
+
       output.innerHTML = `
         <h3>Starting directions for ${audience}</h3>
         <ol class="prompt-list">
@@ -1253,81 +1265,98 @@ Thank you!`
         </div>
         <div class="cta-row" style="margin-top:14px;"><button class="btn secondary small" id="copyPromptsBtn">Copy prompts</button></div>
       `;
-      document.getElementById('copyPromptsBtn').addEventListener('click', () => {
-        copyText(`Creative directions for ${audience}:
+
+      if ($('copyPromptsBtn')) {
+        $('copyPromptsBtn').addEventListener('click', () => {
+          copyText(`Creative directions for ${audience}:
 
 ` + prompts.map((p, i) => `${i + 1}. ${p}`).join('
 '), 'Prompts copied');
-      });
+        });
+      }
     }
 
-    document.querySelectorAll('[data-tab-target]').forEach(btn => {
-      btn.addEventListener('click', () => switchTab(btn.dataset.tabTarget));
-    });
-
-    document.querySelectorAll('.pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        const group = pill.parentElement.dataset.pillGroup;
-        pill.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        state[group] = pill.dataset.value;
-        calculatePricing();
+    function initToolkit() {
+      document.querySelectorAll('[data-tab-target]').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tabTarget));
       });
-    });
 
-    document.getElementById('workType').addEventListener('change', calculatePricing);
-    document.getElementById('calculateBtn').addEventListener('click', calculatePricing);
+      document.querySelectorAll('.pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          const group = pill.parentElement.dataset.pillGroup;
+          pill.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          state[group] = pill.dataset.value;
+          calculatePricing();
+        });
+      });
 
-    document.getElementById('copyPricing').addEventListener('click', () => {
-      copyText(state.lastSummary + ` Suggested deposit: ${document.getElementById('depositAmount').textContent}. Revisions: ${document.getElementById('revisionNote').textContent}.`, 'Pricing copied');
-    });
+      if ($('workType')) $('workType').addEventListener('change', calculatePricing);
+      if ($('calculateBtn')) $('calculateBtn').addEventListener('click', calculatePricing);
 
-    document.getElementById('useForInvoice').addEventListener('click', () => {
-      const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
-      const workType = document.getElementById('workType').value;
-      document.getElementById('invoiceAmount').value = midpoint;
-      document.getElementById('projectDescription').value = `${pricingData[workType].label} project. Includes agreed deliverables and ${pricingData[workType].revisions} of revisions.`;
-      updateInvoice();
-      switchTab('invoice');
-    });
+      if ($('copyPricing')) {
+        $('copyPricing').addEventListener('click', () => {
+          copyText(state.lastSummary + ` Suggested deposit: ${$('depositAmount') ? $('depositAmount').textContent : ''}. Revisions: ${$('revisionNote') ? $('revisionNote').textContent : ''}.`, 'Pricing copied');
+        });
+      }
 
-    document.getElementById('updateInvoice').addEventListener('click', updateInvoice);
-    document.getElementById('printInvoice').addEventListener('click', () => { updateInvoice(); window.print(); });
+      if ($('useForInvoice')) {
+        $('useForInvoice').addEventListener('click', () => {
+          const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
+          const workType = $('workType') ? $('workType').value : 'illustration';
+          if ($('invoiceAmount')) $('invoiceAmount').value = midpoint;
+          if ($('projectDescription')) $('projectDescription').value = `${pricingData[workType].label} project. Includes agreed deliverables and ${pricingData[workType].revisions} of revisions.`;
+          updateInvoice();
+          switchTab('invoice');
+        });
+      }
 
-    document.getElementById('copyInvoiceEmail').addEventListener('click', () => {
-      updateInvoice();
-      const client = document.getElementById('clientName').value || '[Client Name]';
-      const invoiceNumber = document.getElementById('invoiceNumber').value || 'INV-001';
-      const amount = money(Number(document.getElementById('invoiceAmount').value || 0));
-      const due = document.getElementById('dueDate').value || '[due date]';
-      const text = `Hi ${client},
+      if ($('updateInvoice')) $('updateInvoice').addEventListener('click', updateInvoice);
+      if ($('printInvoice')) $('printInvoice').addEventListener('click', () => { updateInvoice(); window.print(); });
+
+      if ($('copyInvoiceEmail')) {
+        $('copyInvoiceEmail').addEventListener('click', () => {
+          updateInvoice();
+          const client = ($('clientName') && $('clientName').value) || '[Client Name]';
+          const invoiceNumber = ($('invoiceNumber') && $('invoiceNumber').value) || 'INV-001';
+          const amount = money(Number(($('invoiceAmount') && $('invoiceAmount').value) || 0));
+          const due = ($('dueDate') && $('dueDate').value) || '[due date]';
+          const text = `Hi ${client},
 
 I’ve attached invoice ${invoiceNumber} for ${amount}. Payment is due by ${due}.
 
 Thank you again — I appreciate it!`;
-      copyText(text, 'Invoice email copied');
-    });
+          copyText(text, 'Invoice email copied');
+        });
+      }
 
-    document.getElementById('proToggle').addEventListener('change', function() {
-      document.getElementById('invoicePreview').classList.toggle('pro', this.checked);
-      if (this.checked) showToast('Pro style preview on');
-    });
+      if ($('proToggle')) {
+        $('proToggle').addEventListener('change', function() {
+          if ($('invoicePreview')) $('invoicePreview').classList.toggle('pro', this.checked);
+          if (this.checked) showToast('Pro style preview on');
+        });
+      }
 
-    document.getElementById('paidPackLink').addEventListener('click', function(e) {
-      e.preventDefault();
-      showToast('Add your payment link here');
-    });
+      if ($('paidPackLink')) {
+        $('paidPackLink').addEventListener('click', function(e) {
+          e.preventDefault();
+          showToast('Add your payment link here');
+        });
+      }
 
-    document.getElementById('generatePrompts').addEventListener('click', generatePrompts);
+      if ($('generatePrompts')) $('generatePrompts').addEventListener('click', generatePrompts);
 
-    ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
-      document.getElementById(id).addEventListener('input', updateInvoice);
-    });
+      ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
+        if ($(id)) $(id).addEventListener('input', updateInvoice);
+      });
 
-    renderScripts();
-    renderExamples();
-    calculatePricing();
-    updateInvoice();
+      renderScripts();
+      renderExamples();
+      calculatePricing();
+      updateInvoice();
+    }
+
+    document.addEventListener('DOMContentLoaded', initToolkit);
   </script>
 </body>
 </html>
