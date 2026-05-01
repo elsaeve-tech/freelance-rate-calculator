@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creative Freelancer Toolkit | Pricing, Invoices & Client Scripts</title>
   <meta name="description" content="A practical freelance toolkit for artists, illustrators, designers, and creative freelancers. Get pricing guidance, create invoices, copy client scripts, and find creative prompts." />
-  <meta name="keywords" content="freelance pricing calculator, creative freelancer, invoice generator, artist pricing, illustrator pricing, logo pricing, freelance client scripts, creative prompts" />
   <link rel="canonical" href="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
-  <meta property="og:title" content="Creative Freelancer Toolkit" />
-  <meta property="og:description" content="Practical tools for pricing, invoicing, client communication, and creative direction." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
+
   <style>
     :root {
-      --ink: #27241f;
-      --muted: #686157;
-      --paper: #fffaf2;
+      --ink: #28241f;
+      --muted: #6d665c;
       --cream: #fbf6ec;
+      --paper: #fffaf2;
       --sage: #87947c;
       --olive: #59634f;
       --clay: #b97861;
-      --gold: #c79c54;
-      --line: rgba(39,36,31,.13);
-      --shadow: 0 22px 60px rgba(50, 42, 32, .12);
+      --line: rgba(40, 36, 31, .14);
+      --shadow: 0 20px 55px rgba(50, 42, 32, .12);
       --radius: 24px;
     }
 
@@ -35,8 +30,8 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(185,120,97,.18), transparent 30rem),
-        radial-gradient(circle at 85% 0%, rgba(135,148,124,.22), transparent 32rem),
+        radial-gradient(circle at top left, rgba(185,120,97,.17), transparent 31rem),
+        radial-gradient(circle at 88% 0%, rgba(135,148,124,.24), transparent 31rem),
         linear-gradient(180deg, #fbf6ec 0%, #f5eee2 100%);
       min-height: 100vh;
     }
@@ -46,12 +41,10 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
       mix-blend-mode: multiply;
       opacity: .18;
     }
-
-    a { color: inherit; }
 
     .wrap {
       width: min(1120px, calc(100% - 32px));
@@ -61,19 +54,19 @@
     }
 
     header {
-      padding: 18px 0;
+      padding: 16px 0;
       position: sticky;
       top: 0;
       z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(251,246,236,.80);
-      border-bottom: 1px solid rgba(39,36,31,.08);
+      background: rgba(251,246,236,.84);
+      border-bottom: 1px solid rgba(40,36,31,.08);
     }
 
     .nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 14px;
     }
 
@@ -82,8 +75,7 @@
       align-items: center;
       gap: 10px;
       font-weight: 850;
-      letter-spacing: -.04em;
-      font-size: 1rem;
+      letter-spacing: -.035em;
       white-space: nowrap;
     }
 
@@ -92,9 +84,9 @@
       height: 34px;
       border-radius: 13px;
       background: linear-gradient(135deg, var(--olive), var(--sage));
+      color: white;
       display: grid;
       place-items: center;
-      color: white;
       font-family: Georgia, serif;
       box-shadow: 0 10px 24px rgba(89,99,79,.24);
     }
@@ -102,12 +94,16 @@
     .nav-links {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 7px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
-    .nav-links button {
+    button, .btn {
+      font: inherit;
+    }
+
+    .nav-btn {
       border: 1px solid transparent;
       background: transparent;
       color: var(--muted);
@@ -116,17 +112,16 @@
       cursor: pointer;
       font-weight: 750;
       font-size: .87rem;
-      text-decoration: none;
     }
 
-    .nav-links button:hover, .nav-links button.active {
+    .nav-btn:hover, .nav-btn.active {
       color: var(--ink);
-      background: rgba(255,255,255,.62);
+      background: rgba(255,255,255,.65);
       border-color: var(--line);
     }
 
     .hero {
-      padding: 54px 0 30px;
+      padding: 52px 0 28px;
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       gap: 30px;
@@ -135,8 +130,6 @@
 
     .eyebrow {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 8px 12px;
       border: 1px solid var(--line);
       background: rgba(255,250,242,.72);
@@ -144,20 +137,19 @@
       color: var(--olive);
       font-weight: 800;
       font-size: .82rem;
-      box-shadow: 0 10px 26px rgba(50,42,32,.05);
     }
 
     h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.45rem, 6vw, 4.7rem);
-      line-height: .99;
-      letter-spacing: -.068em;
+      font-size: clamp(2.35rem, 6vw, 4.65rem);
+      line-height: 1;
+      letter-spacing: -.065em;
       margin: 17px 0;
       max-width: 820px;
     }
 
     .hero p {
-      font-size: clamp(1.01rem, 1.8vw, 1.16rem);
+      font-size: clamp(1rem, 1.8vw, 1.16rem);
       color: var(--muted);
       line-height: 1.65;
       max-width: 680px;
@@ -166,8 +158,6 @@
 
     .free-note {
       display: inline-flex;
-      align-items: flex-start;
-      gap: 9px;
       padding: 11px 13px;
       border-radius: 18px;
       background: rgba(89,99,79,.10);
@@ -179,7 +169,7 @@
     }
 
     .maker-note {
-      margin-top: 18px;
+      margin-top: 26px;
       max-width: 650px;
       color: var(--muted);
       font-size: .96rem;
@@ -195,6 +185,10 @@
       align-items: center;
     }
 
+    .hero .cta-row {
+      margin-bottom: 20px;
+    }
+
     .btn {
       appearance: none;
       border: 0;
@@ -204,7 +198,7 @@
       color: white;
       font-weight: 850;
       cursor: pointer;
-      box-shadow: 0 13px 32px rgba(39,36,31,.17);
+      box-shadow: 0 13px 32px rgba(40,36,31,.17);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
@@ -215,7 +209,7 @@
     }
 
     .btn.secondary {
-      background: rgba(255,250,242,.78);
+      background: rgba(255,250,242,.84);
       color: var(--ink);
       border: 1px solid var(--line);
       box-shadow: none;
@@ -233,25 +227,31 @@
       font-size: .9rem;
     }
 
-    .hero-card, .upgrade-card, .card, .script-card, .example-card, .seo-card {
-      background: rgba(255,250,242,.78);
-      border: 1px solid rgba(39,36,31,.12);
+    .hero-card, .upgrade-card, .tool-shell, .card, .script-card, .example-card, .seo-card {
+      background: rgba(255,250,242,.80);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: 0 12px 36px rgba(50,42,32,.07);
     }
 
-    .hero-card { overflow: hidden; box-shadow: var(--shadow); }
+    .hero-card {
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
 
-    .hero-card-top { padding: 24px; border-bottom: 1px solid var(--line); }
+    .hero-card-top {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+    }
 
     .hero-card h2, .upgrade-card h2, .card h2, .card h3, .script-card h3, .example-card h3 {
       font-family: Georgia, serif;
-      letter-spacing: -.045em;
-      line-height: 1.08;
+      letter-spacing: -.04em;
+      line-height: 1.1;
       margin: 0 0 12px;
     }
 
-    .hero-card h2 { font-size: 1.6rem; }
+    .hero-card h2 { font-size: 1.55rem; }
 
     .mini-list {
       list-style: none;
@@ -288,22 +288,28 @@
       border-top: 1px solid var(--line);
     }
 
-    .stat { padding: 16px; border-right: 1px solid var(--line); }
+    .stat {
+      padding: 16px;
+      border-right: 1px solid var(--line);
+    }
+
     .stat:last-child { border-right: 0; }
     .stat strong { display: block; font-size: 1.25rem; letter-spacing: -.04em; }
     .stat span { color: var(--muted); font-size: .8rem; font-weight: 750; }
 
     .upgrade-card {
-      margin: 10px 0 26px;
-      padding: 18px;
+      margin: 30px auto 40px;
+      padding: 24px;
+      max-width: 760px;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr;
       gap: 18px;
-      align-items: center;
-      background: rgba(255,255,255,.52);
+      text-align: left;
+      background: linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,250,242,.88));
+      box-shadow: 0 18px 50px rgba(40,36,31,.08);
     }
 
-    .upgrade-card h2 { font-size: 1.45rem; }
+    .upgrade-card h2 { font-size: 1.55rem; }
     .upgrade-card p { color: var(--muted); line-height: 1.55; margin: 0 0 12px; }
 
     .upgrade-list {
@@ -327,17 +333,14 @@
     main { padding: 12px 0 60px; }
 
     .tool-shell {
-      background: rgba(255,250,242,.84);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .tabs {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      background: rgba(255,255,255,.40);
+      background: rgba(255,255,255,.44);
       border-bottom: 1px solid var(--line);
     }
 
@@ -354,7 +357,7 @@
     }
 
     .tab:last-child { border-right: 0; }
-    .tab.active { color: var(--ink); background: rgba(255,255,255,.68); }
+    .tab.active { color: var(--ink); background: rgba(255,255,255,.70); }
 
     .panel { display: none; padding: 24px; }
     .panel.active { display: block; }
@@ -383,11 +386,11 @@
 
     input, select, textarea {
       width: 100%;
-      border: 1px solid rgba(39,36,31,.16);
-      background: rgba(255,250,242,.88);
+      border: 1px solid rgba(40,36,31,.16);
+      background: rgba(255,250,242,.90);
       color: var(--ink);
       border-radius: 16px;
-      padding: 13px 13px;
+      padding: 13px;
       font: inherit;
       outline: none;
       min-height: 46px;
@@ -400,11 +403,15 @@
       box-shadow: 0 0 0 4px rgba(135,148,124,.14);
     }
 
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
     .pill {
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.58);
+      background: rgba(255,255,255,.60);
       color: var(--muted);
       border-radius: 999px;
       padding: 10px 12px;
@@ -418,12 +425,12 @@
 
     .result-card {
       position: sticky;
-      top: 90px;
-      background: linear-gradient(135deg, rgba(89,99,79,.94), rgba(39,36,31,.93));
+      top: 88px;
+      background: linear-gradient(135deg, rgba(89,99,79,.94), rgba(40,36,31,.93));
       color: white;
-      border-radius: 28px;
+      border-radius: 26px;
       padding: 24px;
-      box-shadow: 0 25px 70px rgba(39,36,31,.22);
+      box-shadow: 0 25px 70px rgba(40,36,31,.22);
       overflow: hidden;
     }
 
@@ -444,14 +451,18 @@
     .price-range {
       font-family: Georgia, serif;
       font-size: clamp(1.9rem, 5vw, 3rem);
-      line-height: .99;
-      letter-spacing: -.068em;
+      line-height: 1;
+      letter-spacing: -.06em;
       margin: 12px 0 8px;
     }
 
     .result-copy { color: rgba(255,255,255,.80); line-height: 1.55; margin-bottom: 18px; }
 
-    .breakdown { display: grid; gap: 10px; margin: 18px 0; }
+    .breakdown {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
 
     .breakdown div {
       display: flex;
@@ -484,7 +495,7 @@
     .script-card p, .example-card p { color: var(--muted); line-height: 1.55; }
 
     .script-text {
-      background: rgba(251,246,236,.90);
+      background: rgba(251,246,236,.92);
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 14px;
@@ -510,13 +521,8 @@
       background: linear-gradient(180deg, #fff 0%, #fffaf2 100%);
     }
 
-    .invoice-preview.pro .invoice-head {
-      border-bottom-color: var(--olive);
-    }
-
-    .invoice-preview.pro .invoice-title {
-      color: var(--olive);
-    }
+    .invoice-preview.pro .invoice-head { border-bottom-color: var(--olive); }
+    .invoice-preview.pro .invoice-title { color: var(--olive); }
 
     .invoice-head {
       display: flex;
@@ -572,7 +578,6 @@
 
     .prompt-output h3 { margin-top: 0; }
     .prompt-list { display: grid; gap: 12px; margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
-    .prompt-list strong { color: var(--ink); }
 
     .locked-note {
       border: 1px dashed rgba(89,99,79,.35);
@@ -619,14 +624,14 @@
       pointer-events: none;
       transition: .25s ease;
       z-index: 80;
-      box-shadow: 0 18px 50px rgba(39,36,31,.24);
+      box-shadow: 0 18px 50px rgba(40,36,31,.24);
       font-weight: 800;
     }
 
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 940px) {
-      .hero, .grid-2, .upgrade-card { grid-template-columns: 1fr; }
+      .hero, .grid-2 { grid-template-columns: 1fr; }
       .result-card { position: relative; top: 0; }
       .scripts-grid, .examples-grid, .seo-grid { grid-template-columns: 1fr; }
       .tabs { grid-template-columns: repeat(2, 1fr); }
@@ -641,18 +646,15 @@
       .wrap { width: min(100% - 22px, 1120px); }
       header { padding: 14px 0; }
       .brand { font-size: .96rem; }
-      .nav-links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 7px;
-      }
-      .nav-links button { background: rgba(255,255,255,.45); border-color: rgba(39,36,31,.08); }
+      .nav-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+      .nav-btn { background: rgba(255,255,255,.48); border-color: rgba(40,36,31,.08); }
       .hero { padding: 30px 0 22px; gap: 20px; }
-      h1 { font-size: clamp(2.25rem, 13vw, 3.1rem); letter-spacing: -.06em; }
+      h1 { font-size: clamp(2.2rem, 13vw, 3.05rem); letter-spacing: -.06em; }
       .hero p { font-size: 1rem; }
       .free-note { display: flex; font-size: .92rem; }
-      .maker-note { font-size: .92rem; }
+      .maker-note { margin-top: 24px; font-size: .92rem; }
       .cta-row { flex-direction: column; align-items: stretch; }
+      .hero .cta-row { margin-bottom: 24px; }
       .btn { width: 100%; }
       .hero-card-top, .card, .script-card, .example-card, .seo-card, .upgrade-card { padding: 16px; }
       .hero-card h2 { font-size: 1.35rem; }
@@ -696,11 +698,11 @@
     <div class="wrap nav">
       <div class="brand"><div class="brand-mark">C</div><span>Creative Freelancer Toolkit</span></div>
       <nav class="nav-links" aria-label="Main navigation">
-        <button class="active" data-tab-target="pricing">Pricing</button>
-        <button data-tab-target="invoice">Invoice</button>
-        <button data-tab-target="scripts">Scripts</button>
-        <button data-tab-target="prompts">Creative Prompts</button>
-        <button data-tab-target="examples">Examples</button>
+        <button type="button" class="nav-btn active" data-tab="pricing">Pricing</button>
+        <button type="button" class="nav-btn" data-tab="invoice">Invoice</button>
+        <button type="button" class="nav-btn" data-tab="scripts">Scripts</button>
+        <button type="button" class="nav-btn" data-tab="prompts">Creative Prompts</button>
+        <button type="button" class="nav-btn" data-tab="examples">Examples</button>
       </nav>
     </div>
   </header>
@@ -712,8 +714,8 @@
       <p>Price a project, make an invoice, copy a client message, or get unstuck when you need a fresh creative direction.</p>
       <div class="free-note">The core tools are free to use. No surprise paywall after you fill something out.</div>
       <div class="cta-row">
-        <a class="btn" href="#tool">Start with pricing</a>
-        <button class="btn secondary" data-tab-target="invoice">Create an invoice</button>
+        <button type="button" class="btn js-tab" data-tab="pricing">Start with pricing</button>
+        <button type="button" class="btn secondary js-tab" data-tab="invoice">Create an invoice</button>
       </div>
       <p class="maker-note">Created by a working freelance artist who knows the awkward parts: naming a price, asking for a deposit, sending an invoice, and trying to sound professional without sounding fake.</p>
     </div>
@@ -737,8 +739,9 @@
 
   <section class="wrap upgrade-card" aria-label="Optional paid upgrade">
     <div>
-      <h2>Optional: Creative Freelancer Pack</h2>
+      <h2>Creative Freelancer Pack (optional)</h2>
       <p>The free tools should be enough to get started. If you want more polish and less second-guessing, the paid pack can include upgraded invoice styles, expanded scripts, pricing checklists, and deeper creative prompts.</p>
+      <p class="tiny">This is for when you want to feel more confident sending things to clients — not just “good enough.”</p>
       <p class="tiny">Suggested price: $7–$12 one-time. Add your Gumroad, Payhip, or Etsy link here when ready.</p>
     </div>
     <div>
@@ -749,7 +752,7 @@
         <li>Pricing checklist before sending a quote</li>
       </ul>
       <div class="cta-row" style="margin-top:14px;">
-        <a class="btn secondary" href="#" id="paidPackLink">Paid pack coming soon</a>
+        <button type="button" class="btn secondary" id="paidPackLink">View optional pack ($7)</button>
       </div>
     </div>
   </section>
@@ -757,11 +760,11 @@
   <main id="tool" class="wrap">
     <div class="tool-shell">
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab-target="pricing">What should I charge?</button>
-        <button class="tab" data-tab-target="invoice">Create an invoice</button>
-        <button class="tab" data-tab-target="scripts">Talk to clients</button>
-        <button class="tab" data-tab-target="prompts">Creative prompts</button>
-        <button class="tab" data-tab-target="examples">Pricing examples</button>
+        <button type="button" class="tab active" data-tab="pricing">What should I charge?</button>
+        <button type="button" class="tab" data-tab="invoice">Create an invoice</button>
+        <button type="button" class="tab" data-tab="scripts">Talk to clients</button>
+        <button type="button" class="tab" data-tab="prompts">Creative prompts</button>
+        <button type="button" class="tab" data-tab="examples">Pricing examples</button>
       </div>
 
       <section id="pricing" class="panel active" role="tabpanel">
@@ -785,41 +788,41 @@
 
             <div class="field">
               <label>Experience level</label>
-              <div class="pill-row" data-pill-group="experience">
-                <button class="pill active" data-value="beginner">Beginner</button>
-                <button class="pill" data-value="intermediate">Intermediate</button>
-                <button class="pill" data-value="experienced">Experienced</button>
-                <button class="pill" data-value="premium">Premium</button>
+              <div class="pill-row" data-group="experience">
+                <button type="button" class="pill active" data-value="beginner">Beginner</button>
+                <button type="button" class="pill" data-value="intermediate">Intermediate</button>
+                <button type="button" class="pill" data-value="experienced">Experienced</button>
+                <button type="button" class="pill" data-value="premium">Premium</button>
               </div>
             </div>
 
             <div class="field">
               <label>Project scope</label>
-              <div class="pill-row" data-pill-group="scope">
-                <button class="pill active" data-value="small">Small</button>
-                <button class="pill" data-value="medium">Medium</button>
-                <button class="pill" data-value="large">Large</button>
+              <div class="pill-row" data-group="scope">
+                <button type="button" class="pill active" data-value="small">Small</button>
+                <button type="button" class="pill" data-value="medium">Medium</button>
+                <button type="button" class="pill" data-value="large">Large</button>
               </div>
             </div>
 
             <div class="field">
               <label>Client type</label>
-              <div class="pill-row" data-pill-group="client">
-                <button class="pill active" data-value="individual">Individual</button>
-                <button class="pill" data-value="smallBusiness">Small business</button>
-                <button class="pill" data-value="funded">Funded brand</button>
+              <div class="pill-row" data-group="client">
+                <button type="button" class="pill active" data-value="individual">Individual</button>
+                <button type="button" class="pill" data-value="smallBusiness">Small business</button>
+                <button type="button" class="pill" data-value="funded">Funded brand</button>
               </div>
             </div>
 
             <div class="field">
               <label>Timeline</label>
-              <div class="pill-row" data-pill-group="timeline">
-                <button class="pill active" data-value="normal">Normal</button>
-                <button class="pill" data-value="rush">Rush</button>
+              <div class="pill-row" data-group="timeline">
+                <button type="button" class="pill active" data-value="normal">Normal</button>
+                <button type="button" class="pill" data-value="rush">Rush</button>
               </div>
             </div>
 
-            <button class="btn" id="calculateBtn">Update my price range</button>
+            <button type="button" class="btn" id="calculateBtn">Update my price range</button>
           </div>
 
           <aside class="result-card" aria-live="polite">
@@ -833,8 +836,8 @@
             </div>
             <div class="notice" id="confidenceNote">If this number feels scary, that does not automatically mean it is too high. It may mean you are used to undercharging.</div>
             <div class="cta-row" style="margin-top:18px;">
-              <button class="btn secondary" id="useForInvoice">Use for invoice</button>
-              <button class="btn soft" id="copyPricing">Copy result</button>
+              <button type="button" class="btn secondary" id="useForInvoice">Use for invoice</button>
+              <button type="button" class="btn soft" id="copyPricing">Copy result</button>
             </div>
           </aside>
         </div>
@@ -862,9 +865,9 @@
             <p class="tiny">Free invoice works fully. The paid version can include extra invoice styles, logo placement, reusable wording, and more polished layouts.</p>
 
             <div class="cta-row" style="margin-top:14px;">
-              <button class="btn" id="updateInvoice">Update invoice</button>
-              <button class="btn secondary" id="printInvoice">Print / save PDF</button>
-              <button class="btn soft" id="copyInvoiceEmail">Copy email text</button>
+              <button type="button" class="btn" id="updateInvoice">Update invoice</button>
+              <button type="button" class="btn secondary" id="printInvoice">Print / save PDF</button>
+              <button type="button" class="btn soft" id="copyInvoiceEmail">Copy email text</button>
             </div>
           </div>
 
@@ -943,10 +946,8 @@
               <input id="promptAudience" placeholder="Example: yoga studio, children’s book author, beach rental, dog rescue" />
             </div>
 
-            <button class="btn" id="generatePrompts">Generate free prompts</button>
-            <div class="locked-note">
-              Paid pack idea: expanded prompt sets with art direction, palette ideas, composition prompts, client presentation language, and revision questions.
-            </div>
+            <button type="button" class="btn" id="generatePrompts">Generate free prompts</button>
+            <div class="locked-note">Paid pack idea: expanded prompt sets with art direction, palette ideas, composition prompts, client presentation language, and revision questions.</div>
           </div>
 
           <div class="prompt-output" id="promptOutput">
@@ -990,48 +991,13 @@
     };
 
     const pricingData = {
-      illustration: {
-        label: 'Illustration',
-        base: { small: [180, 450], medium: [450, 1100], large: [1100, 2800] },
-        revisions: '1–2 rounds',
-        summary: 'A good range for custom illustration with a defined style, clear usage, and limited revisions.'
-      },
-      childrensBook: {
-        label: 'Children’s book illustration',
-        base: { small: [100, 250], medium: [1200, 4500], large: [4500, 12000] },
-        revisions: '2 rounds per spread/page',
-        summary: 'Children’s book pricing depends heavily on page count, complexity, character design, and rights. Small = single page/spread; medium/large = partial or full book.'
-      },
-      logo: {
-        label: 'Logo design',
-        base: { small: [250, 650], medium: [650, 1600], large: [1600, 5000] },
-        revisions: '2 rounds',
-        summary: 'Logo pricing should include concept development, refinement, final files, and basic usage terms.'
-      },
-      branding: {
-        label: 'Brand identity',
-        base: { small: [650, 1500], medium: [1500, 3500], large: [3500, 9000] },
-        revisions: '2–3 rounds',
-        summary: 'Brand identity usually includes a logo system, color palette, typography direction, and a simple style guide.'
-      },
-      website: {
-        label: 'Website design',
-        base: { small: [800, 1800], medium: [1800, 4500], large: [4500, 12000] },
-        revisions: '2 rounds per phase',
-        summary: 'Website pricing depends on page count, copy, platform, functionality, and whether you are designing only or also building.'
-      },
-      social: {
-        label: 'Social media design',
-        base: { small: [150, 400], medium: [400, 1100], large: [1100, 3000] },
-        revisions: '1–2 rounds',
-        summary: 'Social design pricing should account for templates, batch quantity, brand consistency, and whether captions or strategy are included.'
-      },
-      painting: {
-        label: 'Original painting / custom art',
-        base: { small: [200, 600], medium: [600, 1800], large: [1800, 8000] },
-        revisions: 'Sketch approval only',
-        summary: 'Original art pricing should reflect size, materials, complexity, your style, and whether commercial usage is included.'
-      }
+      illustration: { label: 'Illustration', base: { small: [180, 450], medium: [450, 1100], large: [1100, 2800] }, revisions: '1–2 rounds', summary: 'A good range for custom illustration with a defined style, clear usage, and limited revisions.' },
+      childrensBook: { label: 'Children’s book illustration', base: { small: [100, 250], medium: [1200, 4500], large: [4500, 12000] }, revisions: '2 rounds per spread/page', summary: 'Children’s book pricing depends heavily on page count, complexity, character design, and rights. Small = single page/spread; medium/large = partial or full book.' },
+      logo: { label: 'Logo design', base: { small: [250, 650], medium: [650, 1600], large: [1600, 5000] }, revisions: '2 rounds', summary: 'Logo pricing should include concept development, refinement, final files, and basic usage terms.' },
+      branding: { label: 'Brand identity', base: { small: [650, 1500], medium: [1500, 3500], large: [3500, 9000] }, revisions: '2–3 rounds', summary: 'Brand identity usually includes a logo system, color palette, typography direction, and a simple style guide.' },
+      website: { label: 'Website design', base: { small: [800, 1800], medium: [1800, 4500], large: [4500, 12000] }, revisions: '2 rounds per phase', summary: 'Website pricing depends on page count, copy, platform, functionality, and whether you are designing only or also building.' },
+      social: { label: 'Social media design', base: { small: [150, 400], medium: [400, 1100], large: [1100, 3000] }, revisions: '1–2 rounds', summary: 'Social design pricing should account for templates, batch quantity, brand consistency, and whether captions or strategy are included.' },
+      painting: { label: 'Original painting / custom art', base: { small: [200, 600], medium: [600, 1800], large: [1800, 8000] }, revisions: 'Sketch approval only', summary: 'Original art pricing should reflect size, materials, complexity, your style, and whether commercial usage is included.' }
     };
 
     const multipliers = {
@@ -1041,59 +1007,41 @@
     };
 
     const scriptItems = [
-      {
-        title: 'Send your price confidently',
-        text: `Hi [Name],
+      ['Send your price confidently', 'Hi [Name],
 
 Thank you again for sharing the details with me. Based on the scope, timeline, and deliverables, the project fee would be $[amount].
 
 That includes [deliverables], plus [number] rounds of revisions. To reserve the project, I ask for a [percentage]% deposit before beginning.
 
-I’d be happy to move forward if that works for you.`
-      },
-      {
-        title: 'Ask for a deposit',
-        text: `Hi [Name],
+I’d be happy to move forward if that works for you.'],
+      ['Ask for a deposit', 'Hi [Name],
 
 I’m excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.
 
-Once the deposit is received, I’ll begin the first concept round.`
-      },
-      {
-        title: 'Respond to “that’s too expensive”',
-        text: `I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.
+Once the deposit is received, I’ll begin the first concept round.'],
+      ['Respond to “that’s too expensive”', 'I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.
 
-I want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.`
-      },
-      {
-        title: 'Set revision boundaries',
-        text: `This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.
+I want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.'],
+      ['Set revision boundaries', 'This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.
 
-That keeps the process clear and helps make sure we stay aligned with the original scope.`
-      },
-      {
-        title: 'Politely decline a bad fit',
-        text: `Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.
+That keeps the process clear and helps make sure we stay aligned with the original scope.'],
+      ['Politely decline a bad fit', 'Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.
 
-I really appreciate you reaching out and wish you the best with it.`
-      },
-      {
-        title: 'Follow up on unpaid invoice',
-        text: `Hi [Name],
+I really appreciate you reaching out and wish you the best with it.'],
+      ['Follow up on unpaid invoice', 'Hi [Name],
 
 Just following up on invoice [invoice number], which was due on [date]. Whenever you have a chance, please let me know when I can expect payment.
 
-Thank you!`
-      }
+Thank you!']
     ];
 
-    const exampleItems = [
-      { title: 'Logo design', range: '$250–$5,000+', body: 'A simple logo for a tiny personal project may be a few hundred dollars. A full logo system for a business with commercial usage should be much higher.' },
-      { title: 'Children’s book illustration', range: '$100–$300+ per page', body: 'Page rates vary by style, detail, rights, and page count. Full books should include character development, revisions, and final file prep.' },
-      { title: 'Brand identity', range: '$650–$9,000+', body: 'A brand kit may include logo, palette, typography, social templates, and guidelines. Larger businesses should pay more for broader usage.' },
-      { title: 'Website design', range: '$800–$12,000+', body: 'Pricing depends on pages, platform, copy, build complexity, SEO, and whether you are providing design only or full implementation.' },
-      { title: 'Custom illustration', range: '$180–$2,800+', body: 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.' },
-      { title: 'Social media templates', range: '$150–$3,000+', body: 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.' }
+    const examples = [
+      ['Logo design', '$250–$5,000+', 'A simple logo for a tiny personal project may be a few hundred dollars. A full logo system for a business with commercial usage should be much higher.'],
+      ['Children’s book illustration', '$100–$300+ per page', 'Page rates vary by style, detail, rights, and page count. Full books should include character development, revisions, and final file prep.'],
+      ['Brand identity', '$650–$9,000+', 'A brand kit may include logo, palette, typography, social templates, and guidelines. Larger businesses should pay more for broader usage.'],
+      ['Website design', '$800–$12,000+', 'Pricing depends on pages, platform, copy, build complexity, SEO, and whether you are providing design only or full implementation.'],
+      ['Custom illustration', '$180–$2,800+', 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.'],
+      ['Social media templates', '$150–$3,000+', 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.']
     ];
 
     const promptBank = {
@@ -1134,37 +1082,49 @@ Thank you!`
       }
     };
 
-    function $(id) {
-      return document.getElementById(id);
+    function money(value) {
+      return '$' + Math.round(value).toLocaleString();
     }
 
-    function money(n) {
-      return '$' + Math.round(n).toLocaleString();
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function copyText(text, message) {
+      navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast('Copy failed'));
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === tabName);
+      });
+      document.querySelectorAll('[data-tab]').forEach(button => {
+        button.classList.toggle('active', button.dataset.tab === tabName);
+      });
+      document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function calculatePricing() {
-      const workTypeEl = $('workType');
-      if (!workTypeEl) return;
-
-      const data = pricingData[workTypeEl.value];
-      if (!data) return;
-
+      const type = document.getElementById('workType').value;
+      const data = pricingData[type];
       const base = data.base[state.scope];
       const mult = multipliers.experience[state.experience] * multipliers.client[state.client] * multipliers.timeline[state.timeline];
       const low = Math.round(base[0] * mult / 10) * 10;
       const high = Math.round(base[1] * mult / 10) * 10;
       const depositLow = Math.round(low * .5 / 10) * 10;
       const depositHigh = Math.round(high * .5 / 10) * 10;
-      const rushText = state.timeline === 'rush' ? 'Included: +25%' : 'Not included';
 
       state.lastRange = { low, high };
       state.lastSummary = `${data.label}: ${money(low)}–${money(high)}. ${data.summary}`;
 
-      if ($('priceRange')) $('priceRange').textContent = `${money(low)}–${money(high)}`;
-      if ($('priceSummary')) $('priceSummary').textContent = data.summary;
-      if ($('depositAmount')) $('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
-      if ($('rushFee')) $('rushFee').textContent = rushText;
-      if ($('revisionNote')) $('revisionNote').textContent = data.revisions;
+      document.getElementById('priceRange').textContent = `${money(low)}–${money(high)}`;
+      document.getElementById('priceSummary').textContent = data.summary;
+      document.getElementById('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
+      document.getElementById('rushFee').textContent = state.timeline === 'rush' ? 'Included: +25%' : 'Not included';
+      document.getElementById('revisionNote').textContent = data.revisions;
 
       const notes = {
         beginner: 'If you are newer, keep the scope especially clear. A lower price should still have boundaries.',
@@ -1172,183 +1132,158 @@ Thank you!`
         experienced: 'Your experience has value. Price for judgment, taste, communication, and reliability — not just time.',
         premium: 'Premium pricing needs premium clarity: usage rights, polished process, strong presentation, and firm boundaries.'
       };
-      if ($('confidenceNote')) $('confidenceNote').textContent = notes[state.experience];
-    }
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === tabId));
-      document.querySelectorAll('[data-tab-target]').forEach(btn => btn.classList.toggle('active', btn.dataset.tabTarget === tabId));
-      const tool = $('tool');
-      if (tool) tool.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function showToast(message = 'Copied') {
-      const toast = $('toast');
-      if (!toast) return;
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1700);
-    }
-
-    function copyText(text, message) {
-      if (!navigator.clipboard) {
-        showToast('Copy not supported');
-        return;
-      }
-      navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast('Copy failed'));
+      document.getElementById('confidenceNote').textContent = notes[state.experience];
     }
 
     function updateInvoice() {
-      if (!$('invoicePreview')) return;
-
+      const amount = Number(document.getElementById('invoiceAmount').value || 0);
       const today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-      const amount = Number(($('invoiceAmount') && $('invoiceAmount').value) || 0);
 
-      if ($('previewBusiness')) $('previewBusiness').textContent = ($('businessName') && $('businessName').value) || 'Your Business Name';
-      if ($('previewEmail')) $('previewEmail').textContent = ($('businessEmail') && $('businessEmail').value) || 'hello@example.com';
-      if ($('previewClient')) $('previewClient').textContent = ($('clientName') && $('clientName').value) || 'Client Name';
-      if ($('previewInvoiceNumber')) $('previewInvoiceNumber').textContent = ($('invoiceNumber') && $('invoiceNumber').value) || 'INV-001';
-      if ($('previewDescription')) $('previewDescription').textContent = ($('projectDescription') && $('projectDescription').value) || 'Project description';
-      if ($('previewAmount')) $('previewAmount').textContent = money(amount);
-      if ($('previewTotal')) $('previewTotal').textContent = money(amount);
-      if ($('previewDate')) $('previewDate').textContent = today;
-      if ($('previewDueDate')) $('previewDueDate').textContent = ($('dueDate') && $('dueDate').value) || '—';
-      if ($('previewPaymentNotes')) $('previewPaymentNotes').textContent = ($('paymentNotes') && $('paymentNotes').value) || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
+      document.getElementById('previewBusiness').textContent = document.getElementById('businessName').value || 'Your Business Name';
+      document.getElementById('previewEmail').textContent = document.getElementById('businessEmail').value || 'hello@example.com';
+      document.getElementById('previewClient').textContent = document.getElementById('clientName').value || 'Client Name';
+      document.getElementById('previewInvoiceNumber').textContent = document.getElementById('invoiceNumber').value || 'INV-001';
+      document.getElementById('previewDescription').textContent = document.getElementById('projectDescription').value || 'Project description';
+      document.getElementById('previewAmount').textContent = money(amount);
+      document.getElementById('previewTotal').textContent = money(amount);
+      document.getElementById('previewDate').textContent = today;
+      document.getElementById('previewDueDate').textContent = document.getElementById('dueDate').value || '—';
+      document.getElementById('previewPaymentNotes').textContent = document.getElementById('paymentNotes').value || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
     }
 
     function renderScripts() {
-      const grid = $('scriptsGrid');
-      if (!grid) return;
-      grid.innerHTML = scriptItems.map((item, index) => `
-        <article class="script-card">
-          <h3>${item.title}</h3>
-          <div class="script-text" id="script-${index}">${item.text}</div>
-          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary small" data-copy-script="${index}">Copy script</button></div>
-        </article>
-      `).join('');
-
-      document.querySelectorAll('[data-copy-script]').forEach(button => {
-        button.addEventListener('click', () => {
-          const script = $(`script-${button.dataset.copyScript}`);
-          if (script) copyText(script.textContent, 'Script copied');
-        });
+      const grid = document.getElementById('scriptsGrid');
+      grid.innerHTML = '';
+      scriptItems.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'script-card';
+        card.innerHTML = `
+          <h3>${item[0]}</h3>
+          <div class="script-text" id="scriptText${index}"></div>
+          <div class="cta-row" style="margin-top:12px;"><button type="button" class="btn secondary small">Copy script</button></div>
+        `;
+        card.querySelector('.script-text').textContent = item[1];
+        card.querySelector('button').addEventListener('click', () => copyText(item[1], 'Script copied'));
+        grid.appendChild(card);
       });
     }
 
     function renderExamples() {
-      const grid = $('examplesGrid');
-      if (!grid) return;
-      grid.innerHTML = exampleItems.map(item => `
-        <article class="example-card">
-          <h3>${item.title}</h3>
-          <p style="font-size:1.45rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item.range}</p>
-          <p>${item.body}</p>
-        </article>
-      `).join('');
+      const grid = document.getElementById('examplesGrid');
+      grid.innerHTML = '';
+      examples.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'example-card';
+        card.innerHTML = `
+          <h3>${item[0]}</h3>
+          <p style="font-size:1.45rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item[1]}</p>
+          <p>${item[2]}</p>
+        `;
+        grid.appendChild(card);
+      });
     }
 
     function generatePrompts() {
-      const type = ($('promptType') && $('promptType').value) || 'logo';
-      const mood = ($('promptMood') && $('promptMood').value) || 'calm';
-      const audience = ($('promptAudience') && $('promptAudience').value) || 'this client';
+      const type = document.getElementById('promptType').value;
+      const mood = document.getElementById('promptMood').value;
+      const audience = document.getElementById('promptAudience').value || 'this client';
       const prompts = promptBank[type][mood];
-      const output = $('promptOutput');
-      if (!output) return;
+      const output = document.getElementById('promptOutput');
 
-      output.innerHTML = `
-        <h3>Starting directions for ${audience}</h3>
-        <ol class="prompt-list">
-          ${prompts.map(prompt => `<li>${prompt}</li>`).join('')}
-        </ol>
-        <div class="locked-note">
-          Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.
-        </div>
-        <div class="cta-row" style="margin-top:14px;"><button class="btn secondary small" id="copyPromptsBtn">Copy prompts</button></div>
-      `;
+      output.innerHTML = '<h3>Starting directions for ' + audience + '</h3>';
+      const list = document.createElement('ol');
+      list.className = 'prompt-list';
+      prompts.forEach(prompt => {
+        const li = document.createElement('li');
+        li.textContent = prompt;
+        list.appendChild(li);
+      });
+      output.appendChild(list);
 
-      if ($('copyPromptsBtn')) {
-        $('copyPromptsBtn').addEventListener('click', () => {
-          copyText(`Creative directions for ${audience}:
+      const note = document.createElement('div');
+      note.className = 'locked-note';
+      note.textContent = 'Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.';
+      output.appendChild(note);
 
-` + prompts.map((p, i) => `${i + 1}. ${p}`).join('
-'), 'Prompts copied');
-        });
-      }
+      const row = document.createElement('div');
+      row.className = 'cta-row';
+      row.style.marginTop = '14px';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'btn secondary small';
+      button.textContent = 'Copy prompts';
+      button.addEventListener('click', () => copyText('Creative directions for ' + audience + ':
+
+' + prompts.map((p, i) => (i + 1) + '. ' + p).join('
+'), 'Prompts copied'));
+      row.appendChild(button);
+      output.appendChild(row);
     }
 
-    function initToolkit() {
-      document.querySelectorAll('[data-tab-target]').forEach(btn => {
-        btn.addEventListener('click', () => switchTab(btn.dataset.tabTarget));
+    function init() {
+      document.querySelectorAll('[data-tab]').forEach(button => {
+        button.addEventListener('click', () => switchTab(button.dataset.tab));
       });
 
-      document.querySelectorAll('.pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-          const group = pill.parentElement.dataset.pillGroup;
-          pill.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          state[group] = pill.dataset.value;
+      document.querySelectorAll('.pill').forEach(button => {
+        button.addEventListener('click', () => {
+          const group = button.parentElement.dataset.group;
+          button.parentElement.querySelectorAll('.pill').forEach(pill => pill.classList.remove('active'));
+          button.classList.add('active');
+          state[group] = button.dataset.value;
           calculatePricing();
         });
       });
 
-      if ($('workType')) $('workType').addEventListener('change', calculatePricing);
-      if ($('calculateBtn')) $('calculateBtn').addEventListener('click', calculatePricing);
+      document.getElementById('workType').addEventListener('change', calculatePricing);
+      document.getElementById('calculateBtn').addEventListener('click', calculatePricing);
 
-      if ($('copyPricing')) {
-        $('copyPricing').addEventListener('click', () => {
-          copyText(state.lastSummary + ` Suggested deposit: ${$('depositAmount') ? $('depositAmount').textContent : ''}. Revisions: ${$('revisionNote') ? $('revisionNote').textContent : ''}.`, 'Pricing copied');
-        });
-      }
+      document.getElementById('copyPricing').addEventListener('click', () => {
+        copyText(state.lastSummary + ' Suggested deposit: ' + document.getElementById('depositAmount').textContent + '. Revisions: ' + document.getElementById('revisionNote').textContent + '.', 'Pricing copied');
+      });
 
-      if ($('useForInvoice')) {
-        $('useForInvoice').addEventListener('click', () => {
-          const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
-          const workType = $('workType') ? $('workType').value : 'illustration';
-          if ($('invoiceAmount')) $('invoiceAmount').value = midpoint;
-          if ($('projectDescription')) $('projectDescription').value = `${pricingData[workType].label} project. Includes agreed deliverables and ${pricingData[workType].revisions} of revisions.`;
-          updateInvoice();
-          switchTab('invoice');
-        });
-      }
-
-      if ($('updateInvoice')) $('updateInvoice').addEventListener('click', updateInvoice);
-      if ($('printInvoice')) $('printInvoice').addEventListener('click', () => { updateInvoice(); window.print(); });
-
-      if ($('copyInvoiceEmail')) {
-        $('copyInvoiceEmail').addEventListener('click', () => {
-          updateInvoice();
-          const client = ($('clientName') && $('clientName').value) || '[Client Name]';
-          const invoiceNumber = ($('invoiceNumber') && $('invoiceNumber').value) || 'INV-001';
-          const amount = money(Number(($('invoiceAmount') && $('invoiceAmount').value) || 0));
-          const due = ($('dueDate') && $('dueDate').value) || '[due date]';
-          const text = `Hi ${client},
-
-I’ve attached invoice ${invoiceNumber} for ${amount}. Payment is due by ${due}.
-
-Thank you again — I appreciate it!`;
-          copyText(text, 'Invoice email copied');
-        });
-      }
-
-      if ($('proToggle')) {
-        $('proToggle').addEventListener('change', function() {
-          if ($('invoicePreview')) $('invoicePreview').classList.toggle('pro', this.checked);
-          if (this.checked) showToast('Pro style preview on');
-        });
-      }
-
-      if ($('paidPackLink')) {
-        $('paidPackLink').addEventListener('click', function(e) {
-          e.preventDefault();
-          showToast('Add your payment link here');
-        });
-      }
-
-      if ($('generatePrompts')) $('generatePrompts').addEventListener('click', generatePrompts);
+      document.getElementById('useForInvoice').addEventListener('click', () => {
+        const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
+        const type = document.getElementById('workType').value;
+        document.getElementById('invoiceAmount').value = midpoint;
+        document.getElementById('projectDescription').value = pricingData[type].label + ' project. Includes agreed deliverables and ' + pricingData[type].revisions + ' of revisions.';
+        updateInvoice();
+        switchTab('invoice');
+      });
 
       ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
-        if ($(id)) $(id).addEventListener('input', updateInvoice);
+        document.getElementById(id).addEventListener('input', updateInvoice);
       });
+
+      document.getElementById('updateInvoice').addEventListener('click', updateInvoice);
+      document.getElementById('printInvoice').addEventListener('click', () => {
+        updateInvoice();
+        window.print();
+      });
+
+      document.getElementById('copyInvoiceEmail').addEventListener('click', () => {
+        updateInvoice();
+        const client = document.getElementById('clientName').value || '[Client Name]';
+        const invoiceNumber = document.getElementById('invoiceNumber').value || 'INV-001';
+        const amount = money(Number(document.getElementById('invoiceAmount').value || 0));
+        const due = document.getElementById('dueDate').value || '[due date]';
+        copyText('Hi ' + client + ',
+
+I’ve attached invoice ' + invoiceNumber + ' for ' + amount + '. Payment is due by ' + due + '.
+
+Thank you again — I appreciate it!', 'Invoice email copied');
+      });
+
+      document.getElementById('proToggle').addEventListener('change', event => {
+        document.getElementById('invoicePreview').classList.toggle('pro', event.target.checked);
+        if (event.target.checked) showToast('Pro style preview on');
+      });
+
+      document.getElementById('paidPackLink').addEventListener('click', () => {
+        showToast('Add your payment link here');
+      });
+
+      document.getElementById('generatePrompts').addEventListener('click', generatePrompts);
 
       renderScripts();
       renderExamples();
@@ -1356,7 +1291,11 @@ Thank you again — I appreciate it!`;
       updateInvoice();
     }
 
-    document.addEventListener('DOMContentLoaded', initToolkit);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
