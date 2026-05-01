@@ -1,189 +1,1080 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2GGS6VLZHV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2GGS6VLZHV');
-</script>
-  <meta name="google-site-verification" content="xteaKjV6O8vNe9YBTTfTlDAE3x10NLmNvp7PZZZ3aYI" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <title>Freelance Rate Calculator (2026) – Know What to Charge</title>
-  <meta name="description" content="Calculate your freelance hourly rate, daily rate, and project pricing based on your income goals, expenses, experience, and realistic billable hours.">
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Freelancer Toolkit | Pricing, Invoices & Client Scripts</title>
+  <meta name="description" content="A simple freelance pricing toolkit for artists, illustrators, designers, and creative freelancers. Get project pricing guidance, generate invoices, and copy client scripts." />
+  <meta name="keywords" content="freelance pricing calculator, creative freelancer, invoice generator, artist pricing, illustrator pricing, logo pricing, freelance client scripts" />
+  <link rel="canonical" href="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
+  <meta property="og:title" content="Creative Freelancer Toolkit" />
+  <meta property="og:description" content="Figure out what to charge, create a simple invoice, and communicate with clients confidently." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
+  <style>
+    :root {
+      --ink: #27241f;
+      --muted: #6d665c;
+      --soft: #f7f1e8;
+      --paper: #fffaf2;
+      --cream: #fbf6ec;
+      --sage: #87947c;
+      --olive: #59634f;
+      --clay: #bf7b5f;
+      --gold: #c79c54;
+      --line: rgba(39,36,31,.13);
+      --shadow: 0 24px 70px rgba(50, 42, 32, .13);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(191,123,95,.20), transparent 34rem),
+        radial-gradient(circle at 80% 0%, rgba(135,148,124,.25), transparent 32rem),
+        linear-gradient(180deg, #fbf6ec 0%, #f6efe3 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      opacity: .22;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(251,246,236,.72);
+      border-bottom: 1px solid rgba(39,36,31,.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 1.05rem;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--olive), var(--sage));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: Georgia, serif;
+      box-shadow: 0 10px 24px rgba(89,99,79,.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links button, .ghost-link {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 13px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+
+    .nav-links button:hover, .nav-links button.active, .ghost-link:hover {
+      color: var(--ink);
+      background: rgba(255,255,255,.58);
+      border-color: var(--line);
+    }
+
+    .hero {
+      padding: 58px 0 34px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,250,242,.70);
+      border-radius: 999px;
+      color: var(--olive);
+      font-weight: 800;
+      font-size: .83rem;
+      box-shadow: 0 10px 26px rgba(50,42,32,.06);
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 6vw, 4.85rem);
+      line-height: .98;
+      letter-spacing: -.07em;
+      margin: 18px 0;
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 0 20px;
+    }
+
+    .free-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      border-radius: 18px;
+      background: rgba(89,99,79,.10);
+      color: var(--olive);
+      font-weight: 800;
+      margin: 0 0 18px;
+      border: 1px solid rgba(89,99,79,.16);
+      line-height: 1.35;
+    }
+
+    .maker-note {
+      margin-top: 18px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.6;
+      padding-left: 16px;
+      border-left: 3px solid rgba(89,99,79,.24);
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 18px;
+      background: var(--ink);
+      color: white;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 14px 35px rgba(39,36,31,.18);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      line-height: 1;
+    }
+
+    .btn.secondary {
+      background: rgba(255,250,242,.75);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .btn.soft {
+      background: rgba(89,99,79,.12);
+      color: var(--olive);
+      box-shadow: none;
+    }
+
+    .hero-card {
+      background: rgba(255,250,242,.78);
+      border: 1px solid rgba(39,36,31,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card-top {
+      padding: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-card h2 {
+      font-family: Georgia, serif;
+      letter-spacing: -.04em;
+      font-size: 1.72rem;
+      line-height: 1.08;
+      margin: 0 0 12px;
+    }
+
+    .mini-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      background: rgba(135,148,124,.18);
+      color: var(--olive);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: .8rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .stat {
+      padding: 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: 1.35rem; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: .82rem; font-weight: 700; }
+
+    main { padding: 16px 0 70px; }
+
+    .tool-shell {
+      background: rgba(255,250,242,.82);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(255,255,255,.38);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tab {
+      padding: 16px 12px;
+      border: 0;
+      border-right: 1px solid var(--line);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 850;
+      color: var(--muted);
+      letter-spacing: -.015em;
+    }
+
+    .tab:last-child { border-right: 0; }
+    .tab.active { color: var(--ink); background: rgba(255,255,255,.62); }
+
+    .panel { display: none; padding: 28px; }
+    .panel.active { display: block; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,.52);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 22px;
+    }
+
+    .card h2, .card h3 {
+      font-family: Georgia, serif;
+      letter-spacing: -.045em;
+      line-height: 1.08;
+      margin: 0 0 14px;
+    }
+
+    .card h2 { font-size: clamp(1.55rem, 3.4vw, 2.2rem); }
+    .card h3 { font-size: 1.28rem; }
+
+    .hint { color: var(--muted); line-height: 1.55; margin: -4px 0 18px; }
+
+    label {
+      display: block;
+      font-weight: 850;
+      margin-bottom: 8px;
+      letter-spacing: -.02em;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(39,36,31,.16);
+      background: rgba(255,250,242,.84);
+      color: var(--ink);
+      border-radius: 18px;
+      padding: 14px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(89,99,79,.55);
+      box-shadow: 0 0 0 4px rgba(135,148,124,.14);
+    }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.52);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 850;
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    .pill.active { background: var(--olive); color: white; border-color: var(--olive); }
+
+    .result-card {
+      position: sticky;
+      top: 96px;
+      background:
+        linear-gradient(135deg, rgba(89,99,79,.94), rgba(39,36,31,.93));
+      color: white;
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: 0 28px 80px rgba(39,36,31,.24);
+      overflow: hidden;
+    }
+
+    .result-card::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.09);
+      right: -90px;
+      top: -120px;
+    }
+
+    .result-card > * { position: relative; z-index: 1; }
+
+    .result-label { color: rgba(255,255,255,.72); font-weight: 800; font-size: .88rem; }
+
+    .price-range {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5.2vw, 3.25rem);
+      line-height: .98;
+      letter-spacing: -.07em;
+      margin: 12px 0 8px;
+    }
+
+    .result-copy { color: rgba(255,255,255,.80); line-height: 1.55; margin-bottom: 18px; }
+
+    .breakdown {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .breakdown div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      padding-bottom: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .breakdown strong { color: white; }
+
+    .notice {
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 14px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.45;
+      font-size: .94rem;
+    }
+
+    .scripts-grid, .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .script-card, .example-card {
+      background: rgba(255,255,255,.52);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .script-card h3, .example-card h3 { margin-bottom: 8px; }
+    .script-card p, .example-card p { color: var(--muted); line-height: 1.55; }
+
+    .script-text {
+      background: rgba(251,246,236,.88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      white-space: pre-wrap;
+      color: var(--ink);
+      line-height: 1.5;
+      min-height: 116px;
+    }
+
+    .tiny { font-size: .84rem; color: var(--muted); line-height: 1.45; }
+
+    .invoice-preview {
+      background: white;
+      color: #202020;
+      border-radius: 12px;
+      padding: 34px;
+      box-shadow: 0 16px 60px rgba(0,0,0,.09);
+      min-height: 560px;
+    }
+
+    .invoice-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 2px solid #202020;
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+    }
+
+    .invoice-title {
+      font-family: Georgia, serif;
+      font-size: 2.15rem;
+      letter-spacing: -.05em;
+      margin: 0;
+    }
+
+    .invoice-meta { text-align: right; color: #555; line-height: 1.5; }
+
+    .invoice-section { margin: 22px 0; }
+    .invoice-section strong { display: block; margin-bottom: 6px; }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    .invoice-table th, .invoice-table td {
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      padding: 12px 0;
+      vertical-align: top;
+    }
+
+    .invoice-table th:last-child, .invoice-table td:last-child { text-align: right; }
+
+    .invoice-total {
+      display: flex;
+      justify-content: flex-end;
+      gap: 24px;
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-top: 18px;
+    }
+
+    .footer-seo {
+      padding: 54px 0 80px;
+    }
+
+    .footer-seo h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.9rem, 4.4vw, 3.15rem);
+      line-height: 1.04;
+      letter-spacing: -.06em;
+      margin: 18px 0 10px;
+      max-width: 850px;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .seo-card {
+      background: rgba(255,250,242,.68);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .seo-card h3 { margin: 0 0 8px; letter-spacing: -.03em; }
+    .seo-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: white;
+      border-radius: 999px;
+      padding: 12px 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      z-index: 80;
+      box-shadow: 0 18px 50px rgba(39,36,31,.24);
+      font-weight: 800;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .result-card { position: relative; top: 0; }
+      .scripts-grid, .examples-grid, .seo-grid { grid-template-columns: 1fr; }
+      .tabs { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 42px; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      header { position: relative; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 22px, 1120px); }
+      .panel { padding: 16px; }
+      .tool-shell { border-radius: 24px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+      .invoice-head { flex-direction: column; }
+      .invoice-meta { text-align: left; }
+      .invoice-preview { padding: 20px; }
+      .tabs { grid-template-columns: 1fr; }
+      h1 { font-size: 2.65rem; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #invoicePreview, #invoicePreview * { visibility: visible; }
+      #invoicePreview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      header, .hero, .tabs, .card, .footer-seo, .toast { display: none !important; }
+    }
+  </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="card">
-      <p class="eyebrow">Freelancer Pricing Tool</p>
-      <h1>Freelance Rate Calculator (Hourly, Daily & Project Pricing)</h1>
-      <p class="subtitle">Figure out what you actually need to charge — not just what feels comfortable.</p>
-<p class="trust-line">Updated for 2026 freelance pricing & real-world billable hours</p>
-
-      <div class="calculator">
-
-        <div class="input-grid">
-          <div class="input-group">
-            <label for="income">Desired Annual Income ($)</label>
-            <input type="number" id="income" placeholder="60000">
-          </div>
-
-          <div class="input-group">
-            <label for="expenses">Monthly Expenses ($)</label>
-            <input type="number" id="expenses" placeholder="2000">
-          </div>
-
-          <div class="input-group">
-            <label for="hours">Hours Worked Per Week</label>
-            <input type="number" id="hours" placeholder="30">
-          </div>
-
-          <div class="input-group">
-            <label for="weeks">Weeks Worked Per Year</label>
-            <input type="number" id="weeks" placeholder="48">
-          </div>
-
-          <div class="input-group">
-            <label for="billable">Billable Time (%)</label>
-            <select id="billable">
-              <option value="40">40% — very admin heavy</option>
-              <option value="50">50% — common</option>
-              <option value="60" selected>60% — healthy target</option>
-              <option value="70">70% — very efficient</option>
-              <option value="80">80% — unusually high</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="experience">Experience Level</label>
-            <select id="experience">
-              <option value="0.9">Beginner</option>
-              <option value="1" selected>Intermediate</option>
-              <option value="1.15">Experienced</option>
-              <option value="1.3">Specialist / premium</option>
-            </select>
-          </div>
-        </div>
-
-        <button onclick="calculate()">Calculate My Rate</button>
-
-        <div class="results" id="results" style="display:none;">
-          <div class="results-header">
-            <h2>Your Recommended Rates</h2>
-            <button class="secondary-btn" id="copyBtn" onclick="copyResults()">Copy Results</button>
-          </div>
-
-          <div class="summary-grid">
-            <div class="summary-box">
-              <p class="summary-label">Hourly Rate</p>
-              <p class="summary-value">$<span id="hourly">0</span></p>
-            </div>
-
-            <div class="summary-box">
-              <p class="summary-label">Daily Rate</p>
-              <p class="summary-value">$<span id="daily">0</span></p>
-            </div>
-          </div>
-
-          <div id="tiered" class="info-box"></div>
-
-          <p id="insight" class="insight"></p>
-
-          <div id="projects" class="project-box"></div>
-
-          <div id="services" class="service-box"></div>
-
-          <div id="realityCheck" class="reality-box"></div>
-        </div>
-      </div>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><div class="brand-mark">C</div><span>Creative Freelancer Toolkit</span></div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <button class="active" data-tab-target="pricing">Pricing</button>
+        <button data-tab-target="invoice">Invoice</button>
+        <button data-tab-target="scripts">Client Scripts</button>
+        <button data-tab-target="examples">Examples</button>
+      </nav>
     </div>
-  </div>
+  </header>
 
-<div style="max-width:700px; margin:30px auto; font-size:14px; color:#555;">
-  <p>
-    This freelance rate calculator helps you determine your hourly rate, daily rate, and project pricing based on your income goals, expenses, and realistic billable hours.
-  </p>
-  <p>
-    Many freelancers undercharge because they don’t account for non-billable time like emails, revisions, and admin work. This tool helps you calculate a more accurate and sustainable freelance rate.
-  </p>
-</div>
-  
-  <script src="script.js"></script>
-  <div style="max-width:700px; margin:40px auto; font-size:14px; color:#555;">
-  <h2>How to Calculate Your Freelance Rate</h2>
-  <p>
-    Most freelancers undercharge because they don’t account for non-billable time like emails, revisions, and client communication.
-  </p>
-  <p>
-    A realistic freelance rate should include your desired income, expenses, and the fact that only a portion of your working hours are actually billable.
-  </p>
-  <p>
-    This calculator helps estimate a sustainable hourly and project rate based on real-world working conditions.
-  </p>
-</div>
-<div style="max-width:700px; margin:40px auto; font-size:14px; color:#555;">
-  <div style="max-width:700px; margin:40px auto; font-size:14px; color:#555;">
-  <h2>Freelance Pricing FAQ</h2>
+  <section class="wrap hero">
+    <div>
+      <span class="eyebrow">For artists, designers & creative freelancers</span>
+      <h1>Know what to charge without spiraling.</h1>
+      <p>A calm, simple toolkit for the awkward parts of freelancing: pricing your work, creating invoices, asking for deposits, and replying when someone says, “That’s too expensive.”</p>
+      <div class="free-note">Everything on this page is free to use — no surprise paywall after you fill it out.</div>
+      <div class="cta-row">
+        <a class="btn" href="#tool">Start with pricing</a>
+        <button class="btn secondary" data-tab-target="invoice">Create an invoice</button>
+      </div>
+      <p class="maker-note">Created by a working freelance artist who has absolutely stared at a message too long wondering, “Is this price normal?” This is meant to make the business side feel clearer, not more intimidating.</p>
+    </div>
 
-  <p><strong>How much should I charge as a freelancer?</strong></p>
-  <p>
-    Your freelance rate should be based on your income goals, expenses, and how many hours you can realistically bill. Many freelancers undercharge because they don’t account for non-billable time like emails, revisions, and admin work.
-  </p>
+    <aside class="hero-card" aria-label="Toolkit features">
+      <div class="hero-card-top">
+        <h2>Clear help, no weird hoops.</h2>
+        <ul class="mini-list">
+          <li><span class="check">✓</span><span>Use the pricing helper and see your answer instantly.</span></li>
+          <li><span class="check">✓</span><span>Create a clean invoice you can print or save as a PDF.</span></li>
+          <li><span class="check">✓</span><span>Copy client scripts for pricing, deposits, revisions, and pushback.</span></li>
+        </ul>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>4</strong><span>simple tools</span></div>
+        <div class="stat"><strong>Free</strong><span>no signup</span></div>
+        <div class="stat"><strong>No</strong><span>spreadsheet energy</span></div>
+      </div>
+    </aside>
+  </section>
 
-  <p><strong>What is a good freelance hourly rate?</strong></p>
-  <p>
-    A typical freelance hourly rate can range from $20 to $150+ depending on experience and industry. However, the most accurate rate is one based on your personal financial needs and workload.
-  </p>
+  <main id="tool" class="wrap">
+    <div class="tool-shell">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab-target="pricing">What should I charge?</button>
+        <button class="tab" data-tab-target="invoice">Create an invoice</button>
+        <button class="tab" data-tab-target="scripts">Talk to clients</button>
+        <button class="tab" data-tab-target="examples">Pricing examples</button>
+      </div>
 
-  <p><strong>Should I charge hourly or per project?</strong></p>
-  <p>
-    Many freelancers prefer project pricing because it protects their time and is easier for clients to understand. Hourly pricing can still work for smaller or ongoing tasks.
-  </p>
+      <section id="pricing" class="panel active" role="tabpanel">
+        <div class="grid-2">
+          <div class="card">
+            <h2>Project pricing helper</h2>
+            <p class="hint">This gives you a realistic starting range. It is not a rule — your final price should reflect usage rights, timeline, revisions, complexity, and how badly you want the project.</p>
 
-  <p><strong>Why do freelancers undercharge?</strong></p>
-  <p>
-    Freelancers often underestimate how much of their time is unpaid. When non-billable work is ignored, rates end up being too low to sustain a stable income.
-  </p>
+            <div class="field">
+              <label for="workType">What kind of work is it?</label>
+              <select id="workType">
+                <option value="illustration">Illustration</option>
+                <option value="childrensBook">Children’s book illustration</option>
+                <option value="logo">Logo design</option>
+                <option value="branding">Brand identity</option>
+                <option value="website">Website design</option>
+                <option value="social">Social media design</option>
+                <option value="painting">Original painting / custom art</option>
+              </select>
+            </div>
 
-  <p><strong>How do I know if I am undercharging?</strong></p>
-  <p>
-    If you feel busy but your income isn’t matching your effort, your rate is likely too low. This usually means your billable hours are lower than expected or your pricing doesn’t reflect your true workload.
-  </p>
-    Use this <a href="index.html">freelance rate calculator</a> to estimate your pricing.
-</div>
+            <div class="field">
+              <label>Experience level</label>
+              <div class="pill-row" data-pill-group="experience">
+                <button class="pill active" data-value="beginner">Beginner</button>
+                <button class="pill" data-value="intermediate">Intermediate</button>
+                <button class="pill" data-value="experienced">Experienced</button>
+                <button class="pill" data-value="premium">Premium</button>
+              </div>
+            </div>
 
-  <div style="max-width:700px; margin:40px auto; font-size:14px; color:#555;">
-  <h2>Freelance Pricing Examples</h2>
+            <div class="field">
+              <label>Project scope</label>
+              <div class="pill-row" data-pill-group="scope">
+                <button class="pill active" data-value="small">Small</button>
+                <button class="pill" data-value="medium">Medium</button>
+                <button class="pill" data-value="large">Large</button>
+              </div>
+            </div>
 
-  <p><strong>How much should I charge for a logo?</strong></p>
-  <p>
-    Logo pricing can range from $100 to $5,000+ depending on experience, revisions, and usage rights. Many freelancers undercharge because they don’t factor in concept development and revisions.
-  </p>
+            <div class="field">
+              <label>Client type</label>
+              <div class="pill-row" data-pill-group="client">
+                <button class="pill active" data-value="individual">Individual</button>
+                <button class="pill" data-value="smallBusiness">Small business</button>
+                <button class="pill" data-value="funded">Funded brand</button>
+              </div>
+            </div>
 
-  <p><strong>How much should I charge for a website?</strong></p>
-  <p>
-    Website projects can range from $1,000 to $10,000+ depending on complexity, pages, and functionality. Pricing should reflect not just build time, but communication and revisions.
-  </p>
+            <div class="field">
+              <label>Timeline</label>
+              <div class="pill-row" data-pill-group="timeline">
+                <button class="pill active" data-value="normal">Normal</button>
+                <button class="pill" data-value="rush">Rush</button>
+              </div>
+            </div>
 
-  <p><strong>How much should I charge per hour as a beginner?</strong></p>
-  <p>
-    Beginner freelance rates typically range from $20 to $40 per hour, but should still be based on your expenses and billable time to avoid burnout.
-  </p>
-</div>
-  
-  <h2>Learn More About Freelance Pricing</h2>
-  <ul>
-  <li><a href="how-much-to-charge.html">How much should I charge as a freelancer?</a></li>
-  <li><a href="freelance-hourly-rate.html">Freelance hourly rate guide</a></li>
-  <li><a href="freelance-project-pricing.html">Freelance project pricing examples</a></li>
-  <li><a href="freelance-rate-beginner.html">Freelance rate for beginners</a></li>
-  </ul>
-</div>
+            <button class="btn" id="calculateBtn">Update my price range</button>
+          </div>
+
+          <aside class="result-card" aria-live="polite">
+            <div class="result-label">Suggested project range</div>
+            <div class="price-range" id="priceRange">$250–$650</div>
+            <p class="result-copy" id="priceSummary">A solid starting point for a small illustration project with a clear scope and limited revisions.</p>
+            <div class="breakdown">
+              <div><span>Suggested deposit</span><strong id="depositAmount">$125–$325</strong></div>
+              <div><span>Rush fee</span><strong id="rushFee">Not included</strong></div>
+              <div><span>Revision boundary</span><strong id="revisionNote">1–2 rounds</strong></div>
+            </div>
+            <div class="notice" id="confidenceNote">If this number feels scary, that does not automatically mean it is too high. It may mean you are used to undercharging.</div>
+            <div class="cta-row" style="margin-top:18px;">
+              <button class="btn secondary" id="useForInvoice">Use for invoice</button>
+              <button class="btn soft" id="copyPricing">Copy result</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="invoice" class="panel" role="tabpanel">
+        <div class="grid-2">
+          <div class="card">
+            <h2>Simple invoice generator</h2>
+            <p class="hint">Create a clean invoice, then use your browser’s print option to save it as a PDF. No login, no accounting software, no drama.</p>
+
+            <div class="field"><label for="businessName">Your name / business name</label><input id="businessName" placeholder="Elsa Eve Studio" /></div>
+            <div class="field"><label for="businessEmail">Your email</label><input id="businessEmail" placeholder="hello@example.com" /></div>
+            <div class="field"><label for="clientName">Client name</label><input id="clientName" placeholder="Client Name" /></div>
+            <div class="field"><label for="invoiceNumber">Invoice number</label><input id="invoiceNumber" placeholder="INV-001" /></div>
+            <div class="field"><label for="projectDescription">Project description</label><textarea id="projectDescription" placeholder="Logo design package including 2 initial concepts and 2 rounds of revisions."></textarea></div>
+            <div class="field"><label for="invoiceAmount">Amount due ($)</label><input id="invoiceAmount" type="number" min="0" step="1" placeholder="500" /></div>
+            <div class="field"><label for="dueDate">Due date</label><input id="dueDate" type="date" /></div>
+            <div class="field"><label for="paymentNotes">Payment notes</label><textarea id="paymentNotes" placeholder="Payment accepted via Zelle, bank transfer, or credit card. Thank you!"></textarea></div>
+
+            <div class="cta-row">
+              <button class="btn" id="updateInvoice">Update invoice</button>
+              <button class="btn secondary" id="printInvoice">Print / save PDF</button>
+              <button class="btn soft" id="copyInvoiceEmail">Copy email text</button>
+            </div>
+          </div>
+
+          <div id="invoicePreview" class="invoice-preview">
+            <div class="invoice-head">
+              <div>
+                <h2 class="invoice-title">Invoice</h2>
+                <div id="previewBusiness">Your Business Name</div>
+                <div id="previewEmail">hello@example.com</div>
+              </div>
+              <div class="invoice-meta">
+                <div><strong id="previewInvoiceNumber">INV-001</strong></div>
+                <div id="previewDate"></div>
+                <div>Due: <span id="previewDueDate">—</span></div>
+              </div>
+            </div>
+
+            <div class="invoice-section">
+              <strong>Bill to</strong>
+              <div id="previewClient">Client Name</div>
+            </div>
+
+            <table class="invoice-table">
+              <thead><tr><th>Description</th><th>Amount</th></tr></thead>
+              <tbody><tr><td id="previewDescription">Project description</td><td id="previewAmount">$0</td></tr></tbody>
+            </table>
+
+            <div class="invoice-total"><span>Total due</span><span id="previewTotal">$0</span></div>
+
+            <div class="invoice-section">
+              <strong>Payment notes</strong>
+              <div id="previewPaymentNotes">Payment accepted via Zelle, bank transfer, or credit card. Thank you!</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scripts" class="panel" role="tabpanel">
+        <div class="card" style="margin-bottom:16px;">
+          <h2>Client scripts you can copy</h2>
+          <p class="hint">For the moments where you know what you mean, but saying it professionally feels weird.</p>
+        </div>
+        <div class="scripts-grid" id="scriptsGrid"></div>
+      </section>
+
+      <section id="examples" class="panel" role="tabpanel">
+        <div class="card" style="margin-bottom:16px;">
+          <h2>Creative pricing examples</h2>
+          <p class="hint">Use these as reference points, not hard rules. Usage rights, timeline, revisions, and client size can change the price a lot.</p>
+        </div>
+        <div class="examples-grid" id="examplesGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <section class="wrap footer-seo">
+    <span class="eyebrow">Freelance pricing, without the panic</span>
+    <h2>A softer way to handle the business side of creative work.</h2>
+    <p style="color:var(--muted); line-height:1.65; max-width:760px; font-size:1.05rem;">This toolkit is made for artists, illustrators, designers, and creative freelancers who want practical pricing guidance without feeling like they need an MBA. Start with a range, set a boundary, ask for a deposit, and send the invoice.</p>
+    <div class="seo-grid">
+      <div class="seo-card"><h3>How much should I charge as a creative freelancer?</h3><p>Start with the project type, your experience, the client’s usage, and how many rounds of revisions are included. Project pricing is often easier than hourly pricing for creative work.</p></div>
+      <div class="seo-card"><h3>Should artists charge a deposit?</h3><p>Yes. A 30–50% deposit is common for custom creative work and helps protect your time before you begin concepts, sketches, or design exploration.</p></div>
+      <div class="seo-card"><h3>What if a client says my price is too high?</h3><p>You can offer to reduce the scope, but avoid lowering the price without changing the deliverables. A smaller package is usually better than a discounted full project.</p></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    const state = {
+      experience: 'beginner',
+      scope: 'small',
+      client: 'individual',
+      timeline: 'normal',
+      lastRange: { low: 250, high: 650 },
+      lastSummary: ''
+    };
+
+    const pricingData = {
+      illustration: {
+        label: 'Illustration',
+        base: { small: [180, 450], medium: [450, 1100], large: [1100, 2800] },
+        revisions: '1–2 rounds',
+        summary: 'A good range for custom illustration with a defined style, clear usage, and limited revisions.'
+      },
+      childrensBook: {
+        label: 'Children’s book illustration',
+        base: { small: [100, 250], medium: [1200, 4500], large: [4500, 12000] },
+        revisions: '2 rounds per spread/page',
+        summary: 'Children’s book pricing depends heavily on page count, complexity, character design, and rights. Small = single page/spread; medium/large = partial or full book.'
+      },
+      logo: {
+        label: 'Logo design',
+        base: { small: [250, 650], medium: [650, 1600], large: [1600, 5000] },
+        revisions: '2 rounds',
+        summary: 'Logo pricing should include concept development, refinement, final files, and basic usage terms.'
+      },
+      branding: {
+        label: 'Brand identity',
+        base: { small: [650, 1500], medium: [1500, 3500], large: [3500, 9000] },
+        revisions: '2–3 rounds',
+        summary: 'Brand identity usually includes a logo system, color palette, typography direction, and a simple style guide.'
+      },
+      website: {
+        label: 'Website design',
+        base: { small: [800, 1800], medium: [1800, 4500], large: [4500, 12000] },
+        revisions: '2 rounds per phase',
+        summary: 'Website pricing depends on page count, copy, platform, functionality, and whether you are designing only or also building.'
+      },
+      social: {
+        label: 'Social media design',
+        base: { small: [150, 400], medium: [400, 1100], large: [1100, 3000] },
+        revisions: '1–2 rounds',
+        summary: 'Social design pricing should account for templates, batch quantity, brand consistency, and whether captions or strategy are included.'
+      },
+      painting: {
+        label: 'Original painting / custom art',
+        base: { small: [200, 600], medium: [600, 1800], large: [1800, 8000] },
+        revisions: 'Sketch approval only',
+        summary: 'Original art pricing should reflect size, materials, complexity, your style, and whether commercial usage is included.'
+      }
+    };
+
+    const multipliers = {
+      experience: { beginner: .78, intermediate: 1, experienced: 1.45, premium: 2.1 },
+      client: { individual: 1, smallBusiness: 1.18, funded: 1.55 },
+      timeline: { normal: 1, rush: 1.25 }
+    };
+
+    const scriptItems = [
+      {
+        title: 'Send your price confidently',
+        text: `Hi [Name],\n\nThank you again for sharing the details with me. Based on the scope, timeline, and deliverables, the project fee would be $[amount].\n\nThat includes [deliverables], plus [number] rounds of revisions. To reserve the project, I ask for a [percentage]% deposit before beginning.\n\nI’d be happy to move forward if that works for you.`
+      },
+      {
+        title: 'Ask for a deposit',
+        text: `Hi [Name],\n\nI’m excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.\n\nOnce the deposit is received, I’ll begin the first concept round.`
+      },
+      {
+        title: 'Respond to “that’s too expensive”',
+        text: `I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.\n\nI want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.`
+      },
+      {
+        title: 'Set revision boundaries',
+        text: `This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.\n\nThat keeps the process clear and helps make sure we stay aligned with the original scope.`
+      },
+      {
+        title: 'Politely decline a bad fit',
+        text: `Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.\n\nI really appreciate you reaching out and wish you the best with it.`
+      },
+      {
+        title: 'Follow up on unpaid invoice',
+        text: `Hi [Name],\n\nJust following up on invoice [invoice number], which was due on [date]. Whenever you have a chance, please let me know when I can expect payment.\n\nThank you!`
+      }
+    ];
+
+    const exampleItems = [
+      { title: 'Logo design', range: '$250–$5,000+', body: 'A simple logo for a tiny personal project may be a few hundred dollars. A full logo system for a business with commercial usage should be much higher.' },
+      { title: 'Children’s book illustration', range: '$100–$300+ per page', body: 'Page rates vary by style, detail, rights, and page count. Full books should include character development, revisions, and final file prep.' },
+      { title: 'Brand identity', range: '$650–$9,000+', body: 'A brand kit may include logo, palette, typography, social templates, and guidelines. Larger businesses should pay more for broader usage.' },
+      { title: 'Website design', range: '$800–$12,000+', body: 'Pricing depends on pages, platform, copy, build complexity, SEO, and whether you are providing design only or full implementation.' },
+      { title: 'Custom illustration', range: '$180–$2,800+', body: 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.' },
+      { title: 'Social media templates', range: '$150–$3,000+', body: 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.' }
+    ];
+
+    function money(n) {
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function calculatePricing() {
+      const workType = document.getElementById('workType').value;
+      const data = pricingData[workType];
+      const base = data.base[state.scope];
+      const mult = multipliers.experience[state.experience] * multipliers.client[state.client] * multipliers.timeline[state.timeline];
+      const low = Math.round(base[0] * mult / 10) * 10;
+      const high = Math.round(base[1] * mult / 10) * 10;
+      const depositLow = Math.round(low * .5 / 10) * 10;
+      const depositHigh = Math.round(high * .5 / 10) * 10;
+      const rushText = state.timeline === 'rush' ? 'Included: +25%' : 'Not included';
+
+      state.lastRange = { low, high };
+      state.lastSummary = `${data.label}: ${money(low)}–${money(high)}. ${data.summary}`;
+
+      document.getElementById('priceRange').textContent = `${money(low)}–${money(high)}`;
+      document.getElementById('priceSummary').textContent = data.summary;
+      document.getElementById('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
+      document.getElementById('rushFee').textContent = rushText;
+      document.getElementById('revisionNote').textContent = data.revisions;
+
+      const notes = {
+        beginner: 'If you are newer, keep the scope especially clear. A lower price should still have boundaries.',
+        intermediate: 'This is a healthy middle range. Do not lower it without reducing the scope.',
+        experienced: 'Your experience has value. Price for judgment, taste, communication, and reliability — not just time.',
+        premium: 'Premium pricing needs premium clarity: usage rights, polished process, strong presentation, and firm boundaries.'
+      };
+      document.getElementById('confidenceNote').textContent = notes[state.experience];
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === tabId));
+      document.querySelectorAll('[data-tab-target]').forEach(btn => btn.classList.toggle('active', btn.dataset.tabTarget === tabId));
+      document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showToast(message = 'Copied') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1700);
+    }
+
+    function copyText(text, message) {
+      navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast('Copy failed'));
+    }
+
+    function updateInvoice() {
+      const today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      const amount = Number(document.getElementById('invoiceAmount').value || 0);
+      document.getElementById('previewBusiness').textContent = document.getElementById('businessName').value || 'Your Business Name';
+      document.getElementById('previewEmail').textContent = document.getElementById('businessEmail').value || 'hello@example.com';
+      document.getElementById('previewClient').textContent = document.getElementById('clientName').value || 'Client Name';
+      document.getElementById('previewInvoiceNumber').textContent = document.getElementById('invoiceNumber').value || 'INV-001';
+      document.getElementById('previewDescription').textContent = document.getElementById('projectDescription').value || 'Project description';
+      document.getElementById('previewAmount').textContent = money(amount);
+      document.getElementById('previewTotal').textContent = money(amount);
+      document.getElementById('previewDate').textContent = today;
+      document.getElementById('previewDueDate').textContent = document.getElementById('dueDate').value || '—';
+      document.getElementById('previewPaymentNotes').textContent = document.getElementById('paymentNotes').value || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
+    }
+
+    function renderScripts() {
+      const grid = document.getElementById('scriptsGrid');
+      grid.innerHTML = scriptItems.map((item, index) => `
+        <article class="script-card">
+          <h3>${item.title}</h3>
+          <div class="script-text" id="script-${index}">${item.text}</div>
+          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary" onclick="copyText(document.getElementById('script-${index}').textContent, 'Script copied')">Copy script</button></div>
+        </article>
+      `).join('');
+    }
+
+    function renderExamples() {
+      const grid = document.getElementById('examplesGrid');
+      grid.innerHTML = exampleItems.map(item => `
+        <article class="example-card">
+          <h3>${item.title}</h3>
+          <p style="font-size:1.65rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item.range}</p>
+          <p>${item.body}</p>
+        </article>
+      `).join('');
+    }
+
+    document.querySelectorAll('[data-tab-target]').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tabTarget));
+    });
+
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const group = pill.parentElement.dataset.pillGroup;
+        pill.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state[group] = pill.dataset.value;
+        calculatePricing();
+      });
+    });
+
+    document.getElementById('workType').addEventListener('change', calculatePricing);
+    document.getElementById('calculateBtn').addEventListener('click', calculatePricing);
+
+    document.getElementById('copyPricing').addEventListener('click', () => {
+      copyText(state.lastSummary + ` Suggested deposit: ${document.getElementById('depositAmount').textContent}. Revisions: ${document.getElementById('revisionNote').textContent}.`, 'Pricing copied');
+    });
+
+    document.getElementById('useForInvoice').addEventListener('click', () => {
+      const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
+      const workType = document.getElementById('workType').value;
+      document.getElementById('invoiceAmount').value = midpoint;
+      document.getElementById('projectDescription').value = `${pricingData[workType].label} project. Includes agreed deliverables and ${pricingData[workType].revisions} of revisions.`;
+      updateInvoice();
+      switchTab('invoice');
+    });
+
+    document.getElementById('updateInvoice').addEventListener('click', updateInvoice);
+    document.getElementById('printInvoice').addEventListener('click', () => { updateInvoice(); window.print(); });
+
+    document.getElementById('copyInvoiceEmail').addEventListener('click', () => {
+      updateInvoice();
+      const client = document.getElementById('clientName').value || '[Client Name]';
+      const invoiceNumber = document.getElementById('invoiceNumber').value || 'INV-001';
+      const amount = money(Number(document.getElementById('invoiceAmount').value || 0));
+      const due = document.getElementById('dueDate').value || '[due date]';
+      const text = `Hi ${client},\n\nI’ve attached invoice ${invoiceNumber} for ${amount}. Payment is due by ${due}.\n\nThank you again — I appreciate it!`;
+      copyText(text, 'Invoice email copied');
+    });
+
+    ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateInvoice);
+    });
+
+    renderScripts();
+    renderExamples();
+    calculatePricing();
+    updateInvoice();
+  </script>
 </body>
 </html>
