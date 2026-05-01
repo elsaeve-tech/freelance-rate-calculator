@@ -981,51 +981,46 @@
   <div class="toast" id="toast">Copied</div>
 
   <script>
-    const state = {
+    var state = {
       experience: 'beginner',
       scope: 'small',
       client: 'individual',
       timeline: 'normal',
-      lastRange: { low: 250, high: 650 },
+      lastLow: 250,
+      lastHigh: 650,
       lastSummary: ''
     };
 
-    const pricingData = {
-      illustration: { label: 'Illustration', base: { small: [180, 450], medium: [450, 1100], large: [1100, 2800] }, revisions: '1–2 rounds', summary: 'A good range for custom illustration with a defined style, clear usage, and limited revisions.' },
-      childrensBook: { label: 'Children’s book illustration', base: { small: [100, 250], medium: [1200, 4500], large: [4500, 12000] }, revisions: '2 rounds per spread/page', summary: 'Children’s book pricing depends heavily on page count, complexity, character design, and rights. Small = single page/spread; medium/large = partial or full book.' },
-      logo: { label: 'Logo design', base: { small: [250, 650], medium: [650, 1600], large: [1600, 5000] }, revisions: '2 rounds', summary: 'Logo pricing should include concept development, refinement, final files, and basic usage terms.' },
-      branding: { label: 'Brand identity', base: { small: [650, 1500], medium: [1500, 3500], large: [3500, 9000] }, revisions: '2–3 rounds', summary: 'Brand identity usually includes a logo system, color palette, typography direction, and a simple style guide.' },
-      website: { label: 'Website design', base: { small: [800, 1800], medium: [1800, 4500], large: [4500, 12000] }, revisions: '2 rounds per phase', summary: 'Website pricing depends on page count, copy, platform, functionality, and whether you are designing only or also building.' },
-      social: { label: 'Social media design', base: { small: [150, 400], medium: [400, 1100], large: [1100, 3000] }, revisions: '1–2 rounds', summary: 'Social design pricing should account for templates, batch quantity, brand consistency, and whether captions or strategy are included.' },
-      painting: { label: 'Original painting / custom art', base: { small: [200, 600], medium: [600, 1800], large: [1800, 8000] }, revisions: 'Sketch approval only', summary: 'Original art pricing should reflect size, materials, complexity, your style, and whether commercial usage is included.' }
+    var pricingData = {
+      illustration: { label: 'Illustration', small: [180, 450], medium: [450, 1100], large: [1100, 2800], revisions: '1-2 rounds', summary: 'A good range for custom illustration with a defined style, clear usage, and limited revisions.' },
+      childrensBook: { label: 'Children’s book illustration', small: [100, 250], medium: [1200, 4500], large: [4500, 12000], revisions: '2 rounds per spread/page', summary: 'Children’s book pricing depends heavily on page count, complexity, character design, and rights. Small = single page/spread; medium/large = partial or full book.' },
+      logo: { label: 'Logo design', small: [250, 650], medium: [650, 1600], large: [1600, 5000], revisions: '2 rounds', summary: 'Logo pricing should include concept development, refinement, final files, and basic usage terms.' },
+      branding: { label: 'Brand identity', small: [650, 1500], medium: [1500, 3500], large: [3500, 9000], revisions: '2-3 rounds', summary: 'Brand identity usually includes a logo system, color palette, typography direction, and a simple style guide.' },
+      website: { label: 'Website design', small: [800, 1800], medium: [1800, 4500], large: [4500, 12000], revisions: '2 rounds per phase', summary: 'Website pricing depends on page count, copy, platform, functionality, and whether you are designing only or also building.' },
+      social: { label: 'Social media design', small: [150, 400], medium: [400, 1100], large: [1100, 3000], revisions: '1-2 rounds', summary: 'Social design pricing should account for templates, batch quantity, brand consistency, and whether captions or strategy are included.' },
+      painting: { label: 'Original painting / custom art', small: [200, 600], medium: [600, 1800], large: [1800, 8000], revisions: 'Sketch approval only', summary: 'Original art pricing should reflect size, materials, complexity, your style, and whether commercial usage is included.' }
     };
 
-    const multipliers = {
-      experience: { beginner: .78, intermediate: 1, experienced: 1.45, premium: 2.1 },
-      client: { individual: 1, smallBusiness: 1.18, funded: 1.55 },
-      timeline: { normal: 1, rush: 1.25 }
-    };
-
-    const scriptItems = [
+    var scriptItems = [
       ['Send your price confidently', 'Hi [Name],
 
 Thank you again for sharing the details with me. Based on the scope, timeline, and deliverables, the project fee would be $[amount].
 
 That includes [deliverables], plus [number] rounds of revisions. To reserve the project, I ask for a [percentage]% deposit before beginning.
 
-I’d be happy to move forward if that works for you.'],
+I would be happy to move forward if that works for you.'],
       ['Ask for a deposit', 'Hi [Name],
 
-I’m excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.
+I am excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.
 
-Once the deposit is received, I’ll begin the first concept round.'],
+Once the deposit is received, I will begin the first concept round.'],
       ['Respond to “that’s too expensive”', 'I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.
 
-I want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.'],
+I want to make sure the project still feels thoughtful and sustainable, so I would rather adjust the scope than rush or undercut the work.'],
       ['Set revision boundaries', 'This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.
 
 That keeps the process clear and helps make sure we stay aligned with the original scope.'],
-      ['Politely decline a bad fit', 'Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.
+      ['Politely decline a bad fit', 'Thank you so much for thinking of me. After looking over the project, I do not think I am the best fit for what you need right now.
 
 I really appreciate you reaching out and wish you the best with it.'],
       ['Follow up on unpaid invoice', 'Hi [Name],
@@ -1035,16 +1030,16 @@ Just following up on invoice [invoice number], which was due on [date]. Whenever
 Thank you!']
     ];
 
-    const examples = [
-      ['Logo design', '$250–$5,000+', 'A simple logo for a tiny personal project may be a few hundred dollars. A full logo system for a business with commercial usage should be much higher.'],
-      ['Children’s book illustration', '$100–$300+ per page', 'Page rates vary by style, detail, rights, and page count. Full books should include character development, revisions, and final file prep.'],
-      ['Brand identity', '$650–$9,000+', 'A brand kit may include logo, palette, typography, social templates, and guidelines. Larger businesses should pay more for broader usage.'],
-      ['Website design', '$800–$12,000+', 'Pricing depends on pages, platform, copy, build complexity, SEO, and whether you are providing design only or full implementation.'],
-      ['Custom illustration', '$180–$2,800+', 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.'],
-      ['Social media templates', '$150–$3,000+', 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.']
+    var examples = [
+      ['Logo design', '$250-$5,000+', 'A simple logo for a tiny personal project may be a few hundred dollars. A full logo system for a business with commercial usage should be much higher.'],
+      ['Children’s book illustration', '$100-$300+ per page', 'Page rates vary by style, detail, rights, and page count. Full books should include character development, revisions, and final file prep.'],
+      ['Brand identity', '$650-$9,000+', 'A brand kit may include logo, palette, typography, social templates, and guidelines. Larger businesses should pay more for broader usage.'],
+      ['Website design', '$800-$12,000+', 'Pricing depends on pages, platform, copy, build complexity, SEO, and whether you are providing design only or full implementation.'],
+      ['Custom illustration', '$180-$2,800+', 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.'],
+      ['Social media templates', '$150-$3,000+', 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.']
     ];
 
-    const promptBank = {
+    var prompts = {
       logo: {
         calm: ['Explore a quiet symbol with soft geometry, generous spacing, and one memorable negative-space detail.', 'Create a wordmark direction with subtle custom letter changes instead of a complicated icon.', 'Try a mark inspired by one natural element, simplified until it feels almost effortless.'],
         playful: ['Sketch a friendly mascot-adjacent mark that feels charming but not childish.', 'Create three icon ideas using rounded shapes, imperfect symmetry, and a small unexpected detail.', 'Try a hand-drawn wordmark with one letter doing something memorable.'],
@@ -1082,220 +1077,235 @@ Thank you!']
       }
     };
 
+    function id(name) { return document.getElementById(name); }
+
     function money(value) {
       return '$' + Math.round(value).toLocaleString();
     }
 
     function showToast(message) {
-      const toast = document.getElementById('toast');
+      var toast = id('toast');
+      if (!toast) return;
       toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1600);
+      toast.className = 'toast show';
+      setTimeout(function() { toast.className = 'toast'; }, 1600);
     }
 
     function copyText(text, message) {
-      navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast('Copy failed'));
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { showToast(message); }).catch(function() { showToast('Copy failed'); });
+      } else {
+        var area = document.createElement('textarea');
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        document.body.removeChild(area);
+        showToast(message);
+      }
     }
 
     function switchTab(tabName) {
-      document.querySelectorAll('.panel').forEach(panel => {
-        panel.classList.toggle('active', panel.id === tabName);
-      });
-      document.querySelectorAll('[data-tab]').forEach(button => {
-        button.classList.toggle('active', button.dataset.tab === tabName);
-      });
-      document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var panels = document.querySelectorAll('.panel');
+      var buttons = document.querySelectorAll('[data-tab]');
+      var i;
+
+      for (i = 0; i < panels.length; i++) {
+        panels[i].className = panels[i].id === tabName ? 'panel active' : 'panel';
+      }
+
+      for (i = 0; i < buttons.length; i++) {
+        if (buttons[i].getAttribute('data-tab') === tabName) {
+          if (buttons[i].className.indexOf('active') === -1) buttons[i].className += ' active';
+        } else {
+          buttons[i].className = buttons[i].className.replace(' active', '').replace('active', '');
+        }
+      }
+
+      if (id('tool')) id('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function calculatePricing() {
-      const type = document.getElementById('workType').value;
-      const data = pricingData[type];
-      const base = data.base[state.scope];
-      const mult = multipliers.experience[state.experience] * multipliers.client[state.client] * multipliers.timeline[state.timeline];
-      const low = Math.round(base[0] * mult / 10) * 10;
-      const high = Math.round(base[1] * mult / 10) * 10;
-      const depositLow = Math.round(low * .5 / 10) * 10;
-      const depositHigh = Math.round(high * .5 / 10) * 10;
+      var type = id('workType').value;
+      var data = pricingData[type];
+      var base = data[state.scope];
+      var expMult = { beginner: .78, intermediate: 1, experienced: 1.45, premium: 2.1 }[state.experience];
+      var clientMult = { individual: 1, smallBusiness: 1.18, funded: 1.55 }[state.client];
+      var timelineMult = { normal: 1, rush: 1.25 }[state.timeline];
+      var mult = expMult * clientMult * timelineMult;
+      var low = Math.round(base[0] * mult / 10) * 10;
+      var high = Math.round(base[1] * mult / 10) * 10;
+      var depositLow = Math.round(low * .5 / 10) * 10;
+      var depositHigh = Math.round(high * .5 / 10) * 10;
 
-      state.lastRange = { low, high };
-      state.lastSummary = `${data.label}: ${money(low)}–${money(high)}. ${data.summary}`;
+      state.lastLow = low;
+      state.lastHigh = high;
+      state.lastSummary = data.label + ': ' + money(low) + '-' + money(high) + '. ' + data.summary;
 
-      document.getElementById('priceRange').textContent = `${money(low)}–${money(high)}`;
-      document.getElementById('priceSummary').textContent = data.summary;
-      document.getElementById('depositAmount').textContent = `${money(depositLow)}–${money(depositHigh)}`;
-      document.getElementById('rushFee').textContent = state.timeline === 'rush' ? 'Included: +25%' : 'Not included';
-      document.getElementById('revisionNote').textContent = data.revisions;
+      id('priceRange').textContent = money(low) + '-' + money(high);
+      id('priceSummary').textContent = data.summary;
+      id('depositAmount').textContent = money(depositLow) + '-' + money(depositHigh);
+      id('rushFee').textContent = state.timeline === 'rush' ? 'Included: +25%' : 'Not included';
+      id('revisionNote').textContent = data.revisions;
 
-      const notes = {
+      var notes = {
         beginner: 'If you are newer, keep the scope especially clear. A lower price should still have boundaries.',
         intermediate: 'This is a healthy middle range. Do not lower it without reducing the scope.',
         experienced: 'Your experience has value. Price for judgment, taste, communication, and reliability — not just time.',
         premium: 'Premium pricing needs premium clarity: usage rights, polished process, strong presentation, and firm boundaries.'
       };
-      document.getElementById('confidenceNote').textContent = notes[state.experience];
+      id('confidenceNote').textContent = notes[state.experience];
     }
 
     function updateInvoice() {
-      const amount = Number(document.getElementById('invoiceAmount').value || 0);
-      const today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-
-      document.getElementById('previewBusiness').textContent = document.getElementById('businessName').value || 'Your Business Name';
-      document.getElementById('previewEmail').textContent = document.getElementById('businessEmail').value || 'hello@example.com';
-      document.getElementById('previewClient').textContent = document.getElementById('clientName').value || 'Client Name';
-      document.getElementById('previewInvoiceNumber').textContent = document.getElementById('invoiceNumber').value || 'INV-001';
-      document.getElementById('previewDescription').textContent = document.getElementById('projectDescription').value || 'Project description';
-      document.getElementById('previewAmount').textContent = money(amount);
-      document.getElementById('previewTotal').textContent = money(amount);
-      document.getElementById('previewDate').textContent = today;
-      document.getElementById('previewDueDate').textContent = document.getElementById('dueDate').value || '—';
-      document.getElementById('previewPaymentNotes').textContent = document.getElementById('paymentNotes').value || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
+      var amount = Number(id('invoiceAmount').value || 0);
+      var today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      id('previewBusiness').textContent = id('businessName').value || 'Your Business Name';
+      id('previewEmail').textContent = id('businessEmail').value || 'hello@example.com';
+      id('previewClient').textContent = id('clientName').value || 'Client Name';
+      id('previewInvoiceNumber').textContent = id('invoiceNumber').value || 'INV-001';
+      id('previewDescription').textContent = id('projectDescription').value || 'Project description';
+      id('previewAmount').textContent = money(amount);
+      id('previewTotal').textContent = money(amount);
+      id('previewDate').textContent = today;
+      id('previewDueDate').textContent = id('dueDate').value || '—';
+      id('previewPaymentNotes').textContent = id('paymentNotes').value || 'Payment accepted via Zelle, bank transfer, or credit card. Thank you!';
     }
 
     function renderScripts() {
-      const grid = document.getElementById('scriptsGrid');
+      var grid = id('scriptsGrid');
+      var i;
       grid.innerHTML = '';
-      scriptItems.forEach((item, index) => {
-        const card = document.createElement('article');
+      for (i = 0; i < scriptItems.length; i++) {
+        var card = document.createElement('article');
+        var title = document.createElement('h3');
+        var text = document.createElement('div');
+        var row = document.createElement('div');
+        var btn = document.createElement('button');
+        title.textContent = scriptItems[i][0];
+        text.className = 'script-text';
+        text.textContent = scriptItems[i][1];
+        row.className = 'cta-row';
+        row.style.marginTop = '12px';
+        btn.type = 'button';
+        btn.className = 'btn secondary small';
+        btn.textContent = 'Copy script';
+        btn.setAttribute('data-script-index', i);
+        btn.onclick = function() {
+          var index = this.getAttribute('data-script-index');
+          copyText(scriptItems[index][1], 'Script copied');
+        };
+        row.appendChild(btn);
         card.className = 'script-card';
-        card.innerHTML = `
-          <h3>${item[0]}</h3>
-          <div class="script-text" id="scriptText${index}"></div>
-          <div class="cta-row" style="margin-top:12px;"><button type="button" class="btn secondary small">Copy script</button></div>
-        `;
-        card.querySelector('.script-text').textContent = item[1];
-        card.querySelector('button').addEventListener('click', () => copyText(item[1], 'Script copied'));
+        card.appendChild(title);
+        card.appendChild(text);
+        card.appendChild(row);
         grid.appendChild(card);
-      });
+      }
     }
 
     function renderExamples() {
-      const grid = document.getElementById('examplesGrid');
+      var grid = id('examplesGrid');
+      var i;
       grid.innerHTML = '';
-      examples.forEach(item => {
-        const card = document.createElement('article');
+      for (i = 0; i < examples.length; i++) {
+        var card = document.createElement('article');
         card.className = 'example-card';
-        card.innerHTML = `
-          <h3>${item[0]}</h3>
-          <p style="font-size:1.45rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item[1]}</p>
-          <p>${item[2]}</p>
-        `;
+        card.innerHTML = '<h3>' + examples[i][0] + '</h3><p style="font-size:1.45rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">' + examples[i][1] + '</p><p>' + examples[i][2] + '</p>';
         grid.appendChild(card);
-      });
+      }
     }
 
     function generatePrompts() {
-      const type = document.getElementById('promptType').value;
-      const mood = document.getElementById('promptMood').value;
-      const audience = document.getElementById('promptAudience').value || 'this client';
-      const prompts = promptBank[type][mood];
-      const output = document.getElementById('promptOutput');
+      var type = id('promptType').value;
+      var mood = id('promptMood').value;
+      var audience = id('promptAudience').value || 'this client';
+      var list = prompts[type][mood];
+      var output = id('promptOutput');
+      var html = '<h3>Starting directions for ' + audience + '</h3><ol class="prompt-list">';
+      var i;
+      for (i = 0; i < list.length; i++) {
+        html += '<li>' + list[i] + '</li>';
+      }
+      html += '</ol><div class="locked-note">Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.</div><div class="cta-row" style="margin-top:14px;"><button type="button" class="btn secondary small" id="copyPromptsBtn">Copy prompts</button></div>';
+      output.innerHTML = html;
+      id('copyPromptsBtn').onclick = function() {
+        copyText('Creative directions for ' + audience + ':
 
-      output.innerHTML = '<h3>Starting directions for ' + audience + '</h3>';
-      const list = document.createElement('ol');
-      list.className = 'prompt-list';
-      prompts.forEach(prompt => {
-        const li = document.createElement('li');
-        li.textContent = prompt;
-        list.appendChild(li);
-      });
-      output.appendChild(list);
-
-      const note = document.createElement('div');
-      note.className = 'locked-note';
-      note.textContent = 'Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.';
-      output.appendChild(note);
-
-      const row = document.createElement('div');
-      row.className = 'cta-row';
-      row.style.marginTop = '14px';
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'btn secondary small';
-      button.textContent = 'Copy prompts';
-      button.addEventListener('click', () => copyText('Creative directions for ' + audience + ':
-
-' + prompts.map((p, i) => (i + 1) + '. ' + p).join('
-'), 'Prompts copied'));
-      row.appendChild(button);
-      output.appendChild(row);
+' + list.join('
+'), 'Prompts copied');
+      };
     }
 
-    function init() {
-      document.querySelectorAll('[data-tab]').forEach(button => {
-        button.addEventListener('click', () => switchTab(button.dataset.tab));
-      });
+    function startToolkit() {
+      var tabButtons = document.querySelectorAll('[data-tab]');
+      var pillButtons = document.querySelectorAll('.pill');
+      var invoiceFields = ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'];
+      var i;
 
-      document.querySelectorAll('.pill').forEach(button => {
-        button.addEventListener('click', () => {
-          const group = button.parentElement.dataset.group;
-          button.parentElement.querySelectorAll('.pill').forEach(pill => pill.classList.remove('active'));
-          button.classList.add('active');
-          state[group] = button.dataset.value;
+      for (i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].onclick = function() { switchTab(this.getAttribute('data-tab')); };
+      }
+
+      for (i = 0; i < pillButtons.length; i++) {
+        pillButtons[i].onclick = function() {
+          var group = this.parentNode.getAttribute('data-group');
+          var siblings = this.parentNode.querySelectorAll('.pill');
+          var j;
+          for (j = 0; j < siblings.length; j++) siblings[j].className = 'pill';
+          this.className = 'pill active';
+          state[group] = this.getAttribute('data-value');
           calculatePricing();
-        });
-      });
+        };
+      }
 
-      document.getElementById('workType').addEventListener('change', calculatePricing);
-      document.getElementById('calculateBtn').addEventListener('click', calculatePricing);
-
-      document.getElementById('copyPricing').addEventListener('click', () => {
-        copyText(state.lastSummary + ' Suggested deposit: ' + document.getElementById('depositAmount').textContent + '. Revisions: ' + document.getElementById('revisionNote').textContent + '.', 'Pricing copied');
-      });
-
-      document.getElementById('useForInvoice').addEventListener('click', () => {
-        const midpoint = Math.round((state.lastRange.low + state.lastRange.high) / 2 / 10) * 10;
-        const type = document.getElementById('workType').value;
-        document.getElementById('invoiceAmount').value = midpoint;
-        document.getElementById('projectDescription').value = pricingData[type].label + ' project. Includes agreed deliverables and ' + pricingData[type].revisions + ' of revisions.';
+      id('workType').onchange = calculatePricing;
+      id('calculateBtn').onclick = calculatePricing;
+      id('copyPricing').onclick = function() {
+        copyText(state.lastSummary + ' Suggested deposit: ' + id('depositAmount').textContent + '. Revisions: ' + id('revisionNote').textContent + '.', 'Pricing copied');
+      };
+      id('useForInvoice').onclick = function() {
+        var midpoint = Math.round((state.lastLow + state.lastHigh) / 2 / 10) * 10;
+        var type = id('workType').value;
+        id('invoiceAmount').value = midpoint;
+        id('projectDescription').value = pricingData[type].label + ' project. Includes agreed deliverables and ' + pricingData[type].revisions + ' of revisions.';
         updateInvoice();
         switchTab('invoice');
-      });
+      };
 
-      ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
-        document.getElementById(id).addEventListener('input', updateInvoice);
-      });
+      for (i = 0; i < invoiceFields.length; i++) {
+        id(invoiceFields[i]).oninput = updateInvoice;
+      }
 
-      document.getElementById('updateInvoice').addEventListener('click', updateInvoice);
-      document.getElementById('printInvoice').addEventListener('click', () => {
+      id('updateInvoice').onclick = updateInvoice;
+      id('printInvoice').onclick = function() { updateInvoice(); window.print(); };
+      id('copyInvoiceEmail').onclick = function() {
         updateInvoice();
-        window.print();
-      });
-
-      document.getElementById('copyInvoiceEmail').addEventListener('click', () => {
-        updateInvoice();
-        const client = document.getElementById('clientName').value || '[Client Name]';
-        const invoiceNumber = document.getElementById('invoiceNumber').value || 'INV-001';
-        const amount = money(Number(document.getElementById('invoiceAmount').value || 0));
-        const due = document.getElementById('dueDate').value || '[due date]';
+        var client = id('clientName').value || '[Client Name]';
+        var invoiceNumber = id('invoiceNumber').value || 'INV-001';
+        var amount = money(Number(id('invoiceAmount').value || 0));
+        var due = id('dueDate').value || '[due date]';
         copyText('Hi ' + client + ',
 
-I’ve attached invoice ' + invoiceNumber + ' for ' + amount + '. Payment is due by ' + due + '.
+I have attached invoice ' + invoiceNumber + ' for ' + amount + '. Payment is due by ' + due + '.
 
 Thank you again — I appreciate it!', 'Invoice email copied');
-      });
-
-      document.getElementById('proToggle').addEventListener('change', event => {
-        document.getElementById('invoicePreview').classList.toggle('pro', event.target.checked);
-        if (event.target.checked) showToast('Pro style preview on');
-      });
-
-      document.getElementById('paidPackLink').addEventListener('click', () => {
-        showToast('Add your payment link here');
-      });
-
-      document.getElementById('generatePrompts').addEventListener('click', generatePrompts);
+      };
+      id('proToggle').onchange = function() {
+        id('invoicePreview').className = this.checked ? 'invoice-preview pro' : 'invoice-preview';
+        if (this.checked) showToast('Pro style preview on');
+      };
+      id('paidPackLink').onclick = function() { showToast('Add your payment link here'); };
+      id('generatePrompts').onclick = generatePrompts;
 
       renderScripts();
       renderExamples();
       calculatePricing();
       updateInvoice();
+      showToast('Tools loaded');
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+    window.onload = startToolkit;
   </script>
 </body>
 </html>
