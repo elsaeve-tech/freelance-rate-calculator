@@ -160,37 +160,99 @@ function renderExamples(){
   });
 }
 
-function generatePrompts(){
-  var type=el('promptType').value;
-  var mood=el('promptMood').value;
-  var audience=el('promptAudience').value||'this client';
-  var list=prompts[type][mood];
-  var output=el('promptOutput');
-  output.innerHTML='<h3>Starting directions for '+audience+'</h3>';
-  var ol=document.createElement('ol');
-  ol.className='prompt-list';
-  list.forEach(function(prompt){
-    var li=document.createElement('li');
-    li.textContent=prompt;
+function getFontSuggestion(type, mood) {
+  var fonts = {
+    logo: {
+      calm: 'A soft serif like Cormorant Garamond, or a clean sans like Inter.',
+      playful: 'A friendly rounded font like Nunito, Quicksand, or a hand-drawn display font.',
+      premium: 'An elegant serif like Playfair Display, Cormorant Garamond, or Libre Baskerville.',
+      earthy: 'A warm serif like Lora or a natural-feeling sans like DM Sans.',
+      bold: 'A strong sans like Montserrat, Archivo Black, or Space Grotesk.'
+    },
+    website: {
+      calm: 'Inter, DM Sans, or Lora for a calm, readable feel.',
+      playful: 'Nunito, Quicksand, or Fraunces paired with a clean body font.',
+      premium: 'Playfair Display or Cormorant Garamond paired with Inter.',
+      earthy: 'Lora, Fraunces, or DM Sans with warm spacing.',
+      bold: 'Space Grotesk, Montserrat, or Archivo Black for headlines.'
+    },
+    social: {
+      calm: 'DM Sans or Inter with lots of spacing.',
+      playful: 'Quicksand, Nunito, or a soft display font for headlines.',
+      premium: 'Playfair Display, Cormorant Garamond, or a refined editorial serif.',
+      earthy: 'Lora, Fraunces, or a simple handwritten accent font.',
+      bold: 'Montserrat, Anton, or Archivo Black for impact.'
+    },
+    illustration: {
+      calm: 'Font may not be needed, but if text is included, try Lora, Cormorant Garamond, or Inter.',
+      playful: 'If text is included, try a hand-lettered style, Quicksand, or Nunito.',
+      premium: 'If text is included, use a restrained serif like Cormorant Garamond or Libre Baskerville.',
+      earthy: 'If text is included, try Lora, Fraunces, or soft hand-lettering.',
+      bold: 'If text is included, try a simple bold sans like Montserrat or Space Grotesk.'
+    },
+    product: {
+      calm: 'Try small, simple type with Inter, DM Sans, or Lora.',
+      playful: 'Try Quicksand, Nunito, or a hand-lettered font.',
+      premium: 'Try Cormorant Garamond, Playfair Display, or a minimal sans.',
+      earthy: 'Try Lora, Fraunces, or an organic handwritten accent.',
+      bold: 'Try Montserrat, Archivo Black, or a strong condensed sans.'
+    }
+  };
+
+  return fonts[type][mood];
+}
+
+function generatePrompts() {
+  var type = el('promptType').value;
+  var mood = el('promptMood').value;
+  var audience = el('promptAudience').value || 'this client';
+  var list = prompts[type][mood];
+  var output = el('promptOutput');
+
+  output.innerHTML = '<h3>Free starting directions for ' + audience + '</h3>';
+
+  var ol = document.createElement('ol');
+  ol.className = 'prompt-list';
+
+  list.forEach(function(prompt) {
+    var li = document.createElement('li');
+    li.textContent = prompt;
     ol.appendChild(li);
   });
+
   output.appendChild(ol);
-  var note=document.createElement('div');
-  note.className='locked-note';
-  note.textContent='Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.';
-  output.appendChild(note);
-  var row=document.createElement('div');
-  row.className='cta-row';
-  row.style.marginTop='14px';
-  var button=document.createElement('button');
-  button.type='button';
-  button.className='btn secondary small';
-  button.textContent='Copy prompts';
-  button.addEventListener('click',function(){
-    copyText('Creative directions for '+audience+':\\n\\n'+list.join('\\n'),'Prompts copied');
+
+  var paid = document.createElement('div');
+  paid.className = 'paid-preview';
+
+  paid.innerHTML =
+    '<h4>Want the client-ready version?</h4>' +
+    '<p class="hint">The paid pack would expand this into a fuller creative direction you can actually build from or present to a client.</p>' +
+    '<ul>' +
+      '<li><strong>Concept direction:</strong> a clearer visual route, not just a vague idea</li>' +
+      '<li><strong>Color palette:</strong> suggested colors and mood</li>' +
+      '<li><strong>Font recommendation:</strong> ' + getFontSuggestion(type, mood) + '</li>' +
+      '<li><strong>Composition idea:</strong> how to arrange the design</li>' +
+      '<li><strong>Client wording:</strong> a polished sentence explaining the direction</li>' +
+    '</ul>' +
+    '<div class="locked-note">Free version gives 3 starting ideas. Paid version gives the deeper direction, font guidance, palette notes, and client-ready language.</div>' +
+    '<div class="cta-row" style="margin-top:14px;">' +
+      '<button type="button" class="btn secondary small" id="copyPromptsBtn">Copy free prompts</button>' +
+      '<button type="button" class="btn small" id="paidPromptBtn">View optional pack ($7)</button>' +
+    '</div>';
+
+  output.appendChild(paid);
+
+  el('copyPromptsBtn').addEventListener('click', function() {
+    copyText(
+      'Creative directions for ' + audience + ':\n\n' + list.join('\n'),
+      'Prompts copied'
+    );
   });
-  row.appendChild(button);
-  output.appendChild(row);
+
+  el('paidPromptBtn').addEventListener('click', function() {
+    showToast('Add your payment link here');
+  });
 }
 
 function init(){
