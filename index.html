@@ -329,11 +329,11 @@
     }
 
     .upgrade-list li::before {
-      content: "•";
-      color: var(--olive);
-      font-weight: 900;
-      margin-right: 8px;
-    }
+  content: "•";
+  color: var(--olive);
+  font-weight: 900;
+  margin-right: 8px;
+}
 
     main { padding: 12px 0 60px; }
 
@@ -748,8 +748,11 @@
 
   <section class="wrap upgrade-card" aria-label="Optional paid upgrade">
     <div>
-      <h2>Optional: Creative Freelancer Pack</h2>
+      <h2 style="font-size:1.6rem;">Creative Freelancer Pack (optional)</h2>
       <p>The free tools should be enough to get started. If you want more polish and less second-guessing, the paid pack can include upgraded invoice styles, expanded scripts, pricing checklists, and deeper creative prompts.</p>
+      <p class="tiny" style="margin-top:-6px;">
+  This is for when you want to feel more confident sending things to clients — not just “good enough.”
+</p>
       <p class="tiny">Suggested price: $7–$12 one-time. Add your Gumroad, Payhip, or Etsy link here when ready.</p>
     </div>
     <div>
@@ -760,7 +763,9 @@
         <li>Pricing checklist before sending a quote</li>
       </ul>
       <div class="cta-row" style="margin-top:14px;">
-        <a class="btn secondary" href="#" id="paidPackLink">Paid pack coming soon</a>
+        <a class="btn secondary" href="#" id="paidPackLink">
+  View optional pack ($7)
+</a>
       </div>
     </div>
   </section>
