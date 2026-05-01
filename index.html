@@ -4,27 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creative Freelancer Toolkit | Pricing, Invoices & Client Scripts</title>
-  <meta name="description" content="A simple freelance pricing toolkit for artists, illustrators, designers, and creative freelancers. Get project pricing guidance, generate invoices, and copy client scripts." />
-  <meta name="keywords" content="freelance pricing calculator, creative freelancer, invoice generator, artist pricing, illustrator pricing, logo pricing, freelance client scripts" />
+  <meta name="description" content="A practical freelance toolkit for artists, illustrators, designers, and creative freelancers. Get pricing guidance, create invoices, copy client scripts, and find creative prompts." />
+  <meta name="keywords" content="freelance pricing calculator, creative freelancer, invoice generator, artist pricing, illustrator pricing, logo pricing, freelance client scripts, creative prompts" />
   <link rel="canonical" href="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
   <meta property="og:title" content="Creative Freelancer Toolkit" />
-  <meta property="og:description" content="Figure out what to charge, create a simple invoice, and communicate with clients confidently." />
+  <meta property="og:description" content="Practical tools for pricing, invoicing, client communication, and creative direction." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://elsaeve-tech.github.io/freelance-rate-calculator/" />
   <style>
     :root {
       --ink: #27241f;
-      --muted: #6d665c;
-      --soft: #f7f1e8;
+      --muted: #686157;
       --paper: #fffaf2;
       --cream: #fbf6ec;
       --sage: #87947c;
       --olive: #59634f;
-      --clay: #bf7b5f;
+      --clay: #b97861;
       --gold: #c79c54;
       --line: rgba(39,36,31,.13);
-      --shadow: 0 24px 70px rgba(50, 42, 32, .13);
-      --radius: 28px;
+      --shadow: 0 22px 60px rgba(50, 42, 32, .12);
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; }
@@ -36,9 +35,9 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(191,123,95,.20), transparent 34rem),
-        radial-gradient(circle at 80% 0%, rgba(135,148,124,.25), transparent 32rem),
-        linear-gradient(180deg, #fbf6ec 0%, #f6efe3 100%);
+        radial-gradient(circle at top left, rgba(185,120,97,.18), transparent 30rem),
+        radial-gradient(circle at 85% 0%, rgba(135,148,124,.22), transparent 32rem),
+        linear-gradient(180deg, #fbf6ec 0%, #f5eee2 100%);
       min-height: 100vh;
     }
 
@@ -47,9 +46,9 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
       mix-blend-mode: multiply;
-      opacity: .22;
+      opacity: .18;
     }
 
     a { color: inherit; }
@@ -57,15 +56,17 @@
     .wrap {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     header {
-      padding: 22px 0;
+      padding: 18px 0;
       position: sticky;
       top: 0;
       z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(251,246,236,.72);
+      background: rgba(251,246,236,.80);
       border-bottom: 1px solid rgba(39,36,31,.08);
     }
 
@@ -73,61 +74,62 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: -.04em;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      white-space: nowrap;
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 13px;
       background: linear-gradient(135deg, var(--olive), var(--sage));
       display: grid;
       place-items: center;
       color: white;
       font-family: Georgia, serif;
-      box-shadow: 0 10px 24px rgba(89,99,79,.28);
+      box-shadow: 0 10px 24px rgba(89,99,79,.24);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
-    .nav-links button, .ghost-link {
+    .nav-links button {
       border: 1px solid transparent;
       background: transparent;
       color: var(--muted);
       border-radius: 999px;
-      padding: 10px 13px;
+      padding: 9px 11px;
       cursor: pointer;
-      font-weight: 700;
-      font-size: .9rem;
+      font-weight: 750;
+      font-size: .87rem;
       text-decoration: none;
     }
 
-    .nav-links button:hover, .nav-links button.active, .ghost-link:hover {
+    .nav-links button:hover, .nav-links button.active {
       color: var(--ink);
-      background: rgba(255,255,255,.58);
+      background: rgba(255,255,255,.62);
       border-color: var(--line);
     }
 
     .hero {
-      padding: 58px 0 34px;
+      padding: 54px 0 30px;
       display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 34px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 30px;
       align-items: center;
     }
 
@@ -137,50 +139,50 @@
       gap: 8px;
       padding: 8px 12px;
       border: 1px solid var(--line);
-      background: rgba(255,250,242,.70);
+      background: rgba(255,250,242,.72);
       border-radius: 999px;
       color: var(--olive);
       font-weight: 800;
-      font-size: .83rem;
-      box-shadow: 0 10px 26px rgba(50,42,32,.06);
+      font-size: .82rem;
+      box-shadow: 0 10px 26px rgba(50,42,32,.05);
     }
 
     h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.35rem, 6vw, 4.85rem);
-      line-height: .98;
-      letter-spacing: -.07em;
-      margin: 18px 0;
-      max-width: 850px;
+      font-size: clamp(2.45rem, 6vw, 4.7rem);
+      line-height: .99;
+      letter-spacing: -.068em;
+      margin: 17px 0;
+      max-width: 820px;
     }
 
     .hero p {
-      font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+      font-size: clamp(1.01rem, 1.8vw, 1.16rem);
       color: var(--muted);
       line-height: 1.65;
       max-width: 680px;
-      margin: 0 0 20px;
+      margin: 0 0 18px;
     }
 
     .free-note {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 13px;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 11px 13px;
       border-radius: 18px;
       background: rgba(89,99,79,.10);
       color: var(--olive);
       font-weight: 800;
       margin: 0 0 18px;
       border: 1px solid rgba(89,99,79,.16);
-      line-height: 1.35;
+      line-height: 1.38;
     }
 
     .maker-note {
       margin-top: 18px;
       max-width: 650px;
       color: var(--muted);
-      font-size: .98rem;
+      font-size: .96rem;
       line-height: 1.6;
       padding-left: 16px;
       border-left: 3px solid rgba(89,99,79,.24);
@@ -188,7 +190,7 @@
 
     .cta-row {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       align-items: center;
     }
@@ -197,22 +199,23 @@
       appearance: none;
       border: 0;
       border-radius: 999px;
-      padding: 14px 18px;
+      padding: 13px 16px;
       background: var(--ink);
       color: white;
       font-weight: 850;
       cursor: pointer;
-      box-shadow: 0 14px 35px rgba(39,36,31,.18);
+      box-shadow: 0 13px 32px rgba(39,36,31,.17);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       line-height: 1;
+      min-height: 44px;
     }
 
     .btn.secondary {
-      background: rgba(255,250,242,.75);
+      background: rgba(255,250,242,.78);
       color: var(--ink);
       border: 1px solid var(--line);
       box-shadow: none;
@@ -224,26 +227,31 @@
       box-shadow: none;
     }
 
-    .hero-card {
+    .btn.small {
+      padding: 10px 13px;
+      min-height: 38px;
+      font-size: .9rem;
+    }
+
+    .hero-card, .upgrade-card, .card, .script-card, .example-card, .seo-card {
       background: rgba(255,250,242,.78);
       border: 1px solid rgba(39,36,31,.12);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(50,42,32,.07);
     }
 
-    .hero-card-top {
-      padding: 26px;
-      border-bottom: 1px solid var(--line);
-    }
+    .hero-card { overflow: hidden; box-shadow: var(--shadow); }
 
-    .hero-card h2 {
+    .hero-card-top { padding: 24px; border-bottom: 1px solid var(--line); }
+
+    .hero-card h2, .upgrade-card h2, .card h2, .card h3, .script-card h3, .example-card h3 {
       font-family: Georgia, serif;
-      letter-spacing: -.04em;
-      font-size: 1.72rem;
+      letter-spacing: -.045em;
       line-height: 1.08;
       margin: 0 0 12px;
     }
+
+    .hero-card h2 { font-size: 1.6rem; }
 
     .mini-list {
       list-style: none;
@@ -280,34 +288,61 @@
       border-top: 1px solid var(--line);
     }
 
-    .stat {
+    .stat { padding: 16px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: 1.25rem; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: .8rem; font-weight: 750; }
+
+    .upgrade-card {
+      margin: 10px 0 26px;
       padding: 18px;
-      border-right: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: center;
+      background: rgba(255,255,255,.52);
     }
 
-    .stat:last-child { border-right: 0; }
-    .stat strong { display: block; font-size: 1.35rem; letter-spacing: -.04em; }
-    .stat span { color: var(--muted); font-size: .82rem; font-weight: 700; }
+    .upgrade-card h2 { font-size: 1.45rem; }
+    .upgrade-card p { color: var(--muted); line-height: 1.55; margin: 0 0 12px; }
 
-    main { padding: 16px 0 70px; }
+    .upgrade-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.4;
+    }
+
+    .upgrade-list li::before {
+      content: "•";
+      color: var(--olive);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    main { padding: 12px 0 60px; }
 
     .tool-shell {
-      background: rgba(255,250,242,.82);
+      background: rgba(255,250,242,.84);
       border: 1px solid var(--line);
-      border-radius: 34px;
+      border-radius: 30px;
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
     .tabs {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: rgba(255,255,255,.38);
+      grid-template-columns: repeat(5, 1fr);
+      background: rgba(255,255,255,.40);
       border-bottom: 1px solid var(--line);
     }
 
     .tab {
-      padding: 16px 12px;
+      padding: 15px 10px;
       border: 0;
       border-right: 1px solid var(--line);
       background: transparent;
@@ -315,39 +350,27 @@
       font-weight: 850;
       color: var(--muted);
       letter-spacing: -.015em;
+      line-height: 1.15;
     }
 
     .tab:last-child { border-right: 0; }
-    .tab.active { color: var(--ink); background: rgba(255,255,255,.62); }
+    .tab.active { color: var(--ink); background: rgba(255,255,255,.68); }
 
-    .panel { display: none; padding: 28px; }
+    .panel { display: none; padding: 24px; }
     .panel.active { display: block; }
 
     .grid-2 {
       display: grid;
       grid-template-columns: .95fr 1.05fr;
-      gap: 22px;
+      gap: 20px;
       align-items: start;
     }
 
-    .card {
-      background: rgba(255,255,255,.52);
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 22px;
-    }
+    .card { padding: 20px; }
+    .card h2 { font-size: clamp(1.45rem, 3.2vw, 2rem); }
+    .card h3 { font-size: 1.22rem; }
 
-    .card h2, .card h3 {
-      font-family: Georgia, serif;
-      letter-spacing: -.045em;
-      line-height: 1.08;
-      margin: 0 0 14px;
-    }
-
-    .card h2 { font-size: clamp(1.55rem, 3.4vw, 2.2rem); }
-    .card h3 { font-size: 1.28rem; }
-
-    .hint { color: var(--muted); line-height: 1.55; margin: -4px 0 18px; }
+    .hint { color: var(--muted); line-height: 1.55; margin: -2px 0 18px; }
 
     label {
       display: block;
@@ -356,20 +379,21 @@
       letter-spacing: -.02em;
     }
 
-    .field { margin-bottom: 16px; }
+    .field { margin-bottom: 15px; }
 
     input, select, textarea {
       width: 100%;
       border: 1px solid rgba(39,36,31,.16);
-      background: rgba(255,250,242,.84);
+      background: rgba(255,250,242,.88);
       color: var(--ink);
-      border-radius: 18px;
-      padding: 14px 14px;
+      border-radius: 16px;
+      padding: 13px 13px;
       font: inherit;
       outline: none;
+      min-height: 46px;
     }
 
-    textarea { min-height: 120px; resize: vertical; }
+    textarea { min-height: 110px; resize: vertical; }
 
     input:focus, select:focus, textarea:focus {
       border-color: rgba(89,99,79,.55);
@@ -380,59 +404,54 @@
 
     .pill {
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.52);
+      background: rgba(255,255,255,.58);
       color: var(--muted);
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 10px 12px;
       font-weight: 850;
       cursor: pointer;
       font-size: .9rem;
+      min-height: 40px;
     }
 
     .pill.active { background: var(--olive); color: white; border-color: var(--olive); }
 
     .result-card {
       position: sticky;
-      top: 96px;
-      background:
-        linear-gradient(135deg, rgba(89,99,79,.94), rgba(39,36,31,.93));
+      top: 90px;
+      background: linear-gradient(135deg, rgba(89,99,79,.94), rgba(39,36,31,.93));
       color: white;
-      border-radius: 30px;
-      padding: 26px;
-      box-shadow: 0 28px 80px rgba(39,36,31,.24);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 25px 70px rgba(39,36,31,.22);
       overflow: hidden;
     }
 
     .result-card::after {
       content: "";
       position: absolute;
-      width: 250px;
-      height: 250px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      background: rgba(255,255,255,.09);
+      background: rgba(255,255,255,.08);
       right: -90px;
-      top: -120px;
+      top: -115px;
     }
 
     .result-card > * { position: relative; z-index: 1; }
-
-    .result-label { color: rgba(255,255,255,.72); font-weight: 800; font-size: .88rem; }
+    .result-label { color: rgba(255,255,255,.72); font-weight: 800; font-size: .86rem; }
 
     .price-range {
       font-family: Georgia, serif;
-      font-size: clamp(2rem, 5.2vw, 3.25rem);
-      line-height: .98;
-      letter-spacing: -.07em;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      line-height: .99;
+      letter-spacing: -.068em;
       margin: 12px 0 8px;
     }
 
     .result-copy { color: rgba(255,255,255,.80); line-height: 1.55; margin-bottom: 18px; }
 
-    .breakdown {
-      display: grid;
-      gap: 10px;
-      margin: 18px 0;
-    }
+    .breakdown { display: grid; gap: 10px; margin: 18px 0; }
 
     .breakdown div {
       display: flex;
@@ -443,38 +462,31 @@
       color: rgba(255,255,255,.82);
     }
 
-    .breakdown strong { color: white; }
+    .breakdown strong { color: white; text-align: right; }
 
     .notice {
       background: rgba(255,255,255,.10);
       border: 1px solid rgba(255,255,255,.18);
-      border-radius: 20px;
-      padding: 14px;
+      border-radius: 18px;
+      padding: 13px;
       color: rgba(255,255,255,.86);
       line-height: 1.45;
-      font-size: .94rem;
+      font-size: .93rem;
     }
 
     .scripts-grid, .examples-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 15px;
     }
 
-    .script-card, .example-card {
-      background: rgba(255,255,255,.52);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 18px;
-    }
-
-    .script-card h3, .example-card h3 { margin-bottom: 8px; }
+    .script-card, .example-card { padding: 18px; }
     .script-card p, .example-card p { color: var(--muted); line-height: 1.55; }
 
     .script-text {
-      background: rgba(251,246,236,.88);
+      background: rgba(251,246,236,.90);
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 14px;
       white-space: pre-wrap;
       color: var(--ink);
@@ -488,29 +500,41 @@
       background: white;
       color: #202020;
       border-radius: 12px;
-      padding: 34px;
-      box-shadow: 0 16px 60px rgba(0,0,0,.09);
-      min-height: 560px;
+      padding: 30px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.08);
+      min-height: 540px;
+    }
+
+    .invoice-preview.pro {
+      border: 2px solid var(--olive);
+      background: linear-gradient(180deg, #fff 0%, #fffaf2 100%);
+    }
+
+    .invoice-preview.pro .invoice-head {
+      border-bottom-color: var(--olive);
+    }
+
+    .invoice-preview.pro .invoice-title {
+      color: var(--olive);
     }
 
     .invoice-head {
       display: flex;
       justify-content: space-between;
-      gap: 24px;
+      gap: 22px;
       border-bottom: 2px solid #202020;
-      padding-bottom: 22px;
+      padding-bottom: 20px;
       margin-bottom: 22px;
     }
 
     .invoice-title {
       font-family: Georgia, serif;
-      font-size: 2.15rem;
+      font-size: 2rem;
       letter-spacing: -.05em;
       margin: 0;
     }
 
     .invoice-meta { text-align: right; color: #555; line-height: 1.5; }
-
     .invoice-section { margin: 22px 0; }
     .invoice-section strong { display: block; margin-bottom: 6px; }
 
@@ -533,38 +557,52 @@
       display: flex;
       justify-content: flex-end;
       gap: 24px;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 900;
       margin-top: 18px;
     }
 
-    .footer-seo {
-      padding: 54px 0 80px;
+    .prompt-output {
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 260px;
     }
+
+    .prompt-output h3 { margin-top: 0; }
+    .prompt-list { display: grid; gap: 12px; margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
+    .prompt-list strong { color: var(--ink); }
+
+    .locked-note {
+      border: 1px dashed rgba(89,99,79,.35);
+      background: rgba(89,99,79,.08);
+      border-radius: 18px;
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    .footer-seo { padding: 46px 0 72px; }
 
     .footer-seo h2 {
       font-family: Georgia, serif;
-      font-size: clamp(1.9rem, 4.4vw, 3.15rem);
-      line-height: 1.04;
+      font-size: clamp(1.85rem, 4.2vw, 2.9rem);
+      line-height: 1.05;
       letter-spacing: -.06em;
-      margin: 18px 0 10px;
+      margin: 14px 0 10px;
       max-width: 850px;
     }
 
     .seo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 15px;
       margin-top: 22px;
     }
 
-    .seo-card {
-      background: rgba(255,250,242,.68);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 18px;
-    }
-
+    .seo-card { padding: 18px; }
     .seo-card h3 { margin: 0 0 8px; letter-spacing: -.03em; }
     .seo-card p { margin: 0; color: var(--muted); line-height: 1.55; }
 
@@ -587,27 +625,55 @@
 
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    @media (max-width: 900px) {
-      .hero, .grid-2 { grid-template-columns: 1fr; }
+    @media (max-width: 940px) {
+      .hero, .grid-2, .upgrade-card { grid-template-columns: 1fr; }
       .result-card { position: relative; top: 0; }
       .scripts-grid, .examples-grid, .seo-grid { grid-template-columns: 1fr; }
       .tabs { grid-template-columns: repeat(2, 1fr); }
-      .hero { padding-top: 42px; }
-      .nav { align-items: flex-start; flex-direction: column; }
+      .tab:nth-child(2n) { border-right: 0; }
+      .hero { padding-top: 36px; }
       header { position: relative; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; width: 100%; }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 620px) {
       .wrap { width: min(100% - 22px, 1120px); }
-      .panel { padding: 16px; }
-      .tool-shell { border-radius: 24px; }
+      header { padding: 14px 0; }
+      .brand { font-size: .96rem; }
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+      }
+      .nav-links button { background: rgba(255,255,255,.45); border-color: rgba(39,36,31,.08); }
+      .hero { padding: 30px 0 22px; gap: 20px; }
+      h1 { font-size: clamp(2.25rem, 13vw, 3.1rem); letter-spacing: -.06em; }
+      .hero p { font-size: 1rem; }
+      .free-note { display: flex; font-size: .92rem; }
+      .maker-note { font-size: .92rem; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .hero-card-top, .card, .script-card, .example-card, .seo-card, .upgrade-card { padding: 16px; }
+      .hero-card h2 { font-size: 1.35rem; }
       .stats { grid-template-columns: 1fr; }
       .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      .tool-shell { border-radius: 22px; }
+      .panel { padding: 14px; }
+      .tabs { grid-template-columns: 1fr; }
+      .tab { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 10px; }
+      .tab:last-child { border-bottom: 0; }
+      .pill { flex: 1 1 calc(50% - 8px); }
+      .breakdown div { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .breakdown strong { text-align: left; }
+      .invoice-preview { padding: 18px; min-height: auto; overflow-wrap: anywhere; }
       .invoice-head { flex-direction: column; }
       .invoice-meta { text-align: left; }
-      .invoice-preview { padding: 20px; }
-      .tabs { grid-template-columns: 1fr; }
-      h1 { font-size: 2.65rem; }
+      .invoice-title { font-size: 1.75rem; }
+      .invoice-total { justify-content: space-between; gap: 12px; }
+      .invoice-table th, .invoice-table td { font-size: .92rem; }
+      .footer-seo { padding-bottom: 52px; }
     }
 
     @media print {
@@ -621,7 +687,7 @@
         box-shadow: none;
         border-radius: 0;
       }
-      header, .hero, .tabs, .card, .footer-seo, .toast { display: none !important; }
+      header, .hero, .tabs, .card, .footer-seo, .toast, .upgrade-card { display: none !important; }
     }
   </style>
 </head>
@@ -632,7 +698,8 @@
       <nav class="nav-links" aria-label="Main navigation">
         <button class="active" data-tab-target="pricing">Pricing</button>
         <button data-tab-target="invoice">Invoice</button>
-        <button data-tab-target="scripts">Client Scripts</button>
+        <button data-tab-target="scripts">Scripts</button>
+        <button data-tab-target="prompts">Creative Prompts</button>
         <button data-tab-target="examples">Examples</button>
       </nav>
     </div>
@@ -641,19 +708,19 @@
   <section class="wrap hero">
     <div>
       <span class="eyebrow">For artists, designers & creative freelancers</span>
-      <h1>Know what to charge without spiraling.</h1>
-      <p>A calm, simple toolkit for the awkward parts of freelancing: pricing your work, creating invoices, asking for deposits, and replying when someone says, “That’s too expensive.”</p>
-      <div class="free-note">Everything on this page is free to use — no surprise paywall after you fill it out.</div>
+      <h1>Simple tools for the business side of creative work.</h1>
+      <p>Price a project, make an invoice, copy a client message, or get unstuck when you need a fresh creative direction.</p>
+      <div class="free-note">The core tools are free to use. No surprise paywall after you fill something out.</div>
       <div class="cta-row">
         <a class="btn" href="#tool">Start with pricing</a>
         <button class="btn secondary" data-tab-target="invoice">Create an invoice</button>
       </div>
-      <p class="maker-note">Created by a working freelance artist who has absolutely stared at a message too long wondering, “Is this price normal?” This is meant to make the business side feel clearer, not more intimidating.</p>
+      <p class="maker-note">Created by a working freelance artist who knows the awkward parts: naming a price, asking for a deposit, sending an invoice, and trying to sound professional without sounding fake.</p>
     </div>
 
     <aside class="hero-card" aria-label="Toolkit features">
       <div class="hero-card-top">
-        <h2>Clear help, no weird hoops.</h2>
+        <h2>Practical help, clear boundaries.</h2>
         <ul class="mini-list">
           <li><span class="check">✓</span><span>Use the pricing helper and see your answer instantly.</span></li>
           <li><span class="check">✓</span><span>Create a clean invoice you can print or save as a PDF.</span></li>
@@ -661,11 +728,30 @@
         </ul>
       </div>
       <div class="stats">
-        <div class="stat"><strong>4</strong><span>simple tools</span></div>
-        <div class="stat"><strong>Free</strong><span>no signup</span></div>
-        <div class="stat"><strong>No</strong><span>spreadsheet energy</span></div>
+        <div class="stat"><strong>Free</strong><span>core tools</span></div>
+        <div class="stat"><strong>$7</strong><span>optional upgrade</span></div>
+        <div class="stat"><strong>No</strong><span>signup needed</span></div>
       </div>
     </aside>
+  </section>
+
+  <section class="wrap upgrade-card" aria-label="Optional paid upgrade">
+    <div>
+      <h2>Optional: Creative Freelancer Pack</h2>
+      <p>The free tools should be enough to get started. If you want more polish and less second-guessing, the paid pack can include upgraded invoice styles, expanded scripts, pricing checklists, and deeper creative prompts.</p>
+      <p class="tiny">Suggested price: $7–$12 one-time. Add your Gumroad, Payhip, or Etsy link here when ready.</p>
+    </div>
+    <div>
+      <ul class="upgrade-list">
+        <li>Pro invoice styles with more polished layouts</li>
+        <li>Expanded client scripts for deposits, late payments, revisions, and pushback</li>
+        <li>Creative direction prompts for logos, illustration, branding, and social posts</li>
+        <li>Pricing checklist before sending a quote</li>
+      </ul>
+      <div class="cta-row" style="margin-top:14px;">
+        <a class="btn secondary" href="#" id="paidPackLink">Paid pack coming soon</a>
+      </div>
+    </div>
   </section>
 
   <main id="tool" class="wrap">
@@ -674,6 +760,7 @@
         <button class="tab active" data-tab-target="pricing">What should I charge?</button>
         <button class="tab" data-tab-target="invoice">Create an invoice</button>
         <button class="tab" data-tab-target="scripts">Talk to clients</button>
+        <button class="tab" data-tab-target="prompts">Creative prompts</button>
         <button class="tab" data-tab-target="examples">Pricing examples</button>
       </div>
 
@@ -681,7 +768,7 @@
         <div class="grid-2">
           <div class="card">
             <h2>Project pricing helper</h2>
-            <p class="hint">This gives you a realistic starting range. It is not a rule — your final price should reflect usage rights, timeline, revisions, complexity, and how badly you want the project.</p>
+            <p class="hint">This gives you a starting range. Your final price should also reflect usage rights, timeline, revisions, complexity, and how much the client will rely on your taste and judgment.</p>
 
             <div class="field">
               <label for="workType">What kind of work is it?</label>
@@ -757,7 +844,7 @@
         <div class="grid-2">
           <div class="card">
             <h2>Simple invoice generator</h2>
-            <p class="hint">Create a clean invoice, then use your browser’s print option to save it as a PDF. No login, no accounting software, no drama.</p>
+            <p class="hint">Create a clean invoice, then use your browser’s print option to save it as a PDF. The basic invoice is free and fully usable.</p>
 
             <div class="field"><label for="businessName">Your name / business name</label><input id="businessName" placeholder="Elsa Eve Studio" /></div>
             <div class="field"><label for="businessEmail">Your email</label><input id="businessEmail" placeholder="hello@example.com" /></div>
@@ -768,7 +855,13 @@
             <div class="field"><label for="dueDate">Due date</label><input id="dueDate" type="date" /></div>
             <div class="field"><label for="paymentNotes">Payment notes</label><textarea id="paymentNotes" placeholder="Payment accepted via Zelle, bank transfer, or credit card. Thank you!"></textarea></div>
 
-            <div class="cta-row">
+            <label style="display:flex; align-items:center; gap:9px; margin-top:4px;">
+              <input type="checkbox" id="proToggle" style="width:auto; min-height:auto;" />
+              Preview pro invoice style
+            </label>
+            <p class="tiny">Free invoice works fully. The paid version can include extra invoice styles, logo placement, reusable wording, and more polished layouts.</p>
+
+            <div class="cta-row" style="margin-top:14px;">
               <button class="btn" id="updateInvoice">Update invoice</button>
               <button class="btn secondary" id="printInvoice">Print / save PDF</button>
               <button class="btn soft" id="copyInvoiceEmail">Copy email text</button>
@@ -810,15 +903,61 @@
       </section>
 
       <section id="scripts" class="panel" role="tabpanel">
-        <div class="card" style="margin-bottom:16px;">
+        <div class="card" style="margin-bottom:15px;">
           <h2>Client scripts you can copy</h2>
           <p class="hint">For the moments where you know what you mean, but saying it professionally feels weird.</p>
         </div>
         <div class="scripts-grid" id="scriptsGrid"></div>
       </section>
 
+      <section id="prompts" class="panel" role="tabpanel">
+        <div class="grid-2">
+          <div class="card">
+            <h2>Creative prompt helper</h2>
+            <p class="hint">This is not meant to replace your taste. It is a quick way to get unstuck and generate a few starting directions.</p>
+
+            <div class="field">
+              <label for="promptType">What are you working on?</label>
+              <select id="promptType">
+                <option value="logo">Logo / brand mark</option>
+                <option value="illustration">Illustration</option>
+                <option value="social">Social post</option>
+                <option value="product">Product / merch design</option>
+                <option value="website">Website / landing page</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="promptMood">Mood</label>
+              <select id="promptMood">
+                <option value="calm">Calm / minimal</option>
+                <option value="playful">Playful / charming</option>
+                <option value="premium">Premium / polished</option>
+                <option value="earthy">Earthy / organic</option>
+                <option value="bold">Bold / memorable</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="promptAudience">Audience or client type</label>
+              <input id="promptAudience" placeholder="Example: yoga studio, children’s book author, beach rental, dog rescue" />
+            </div>
+
+            <button class="btn" id="generatePrompts">Generate free prompts</button>
+            <div class="locked-note">
+              Paid pack idea: expanded prompt sets with art direction, palette ideas, composition prompts, client presentation language, and revision questions.
+            </div>
+          </div>
+
+          <div class="prompt-output" id="promptOutput">
+            <h3>Your prompts will appear here</h3>
+            <p class="hint">Choose a project type, mood, and audience, then generate a few starting directions.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="examples" class="panel" role="tabpanel">
-        <div class="card" style="margin-bottom:16px;">
+        <div class="card" style="margin-bottom:15px;">
           <h2>Creative pricing examples</h2>
           <p class="hint">Use these as reference points, not hard rules. Usage rights, timeline, revisions, and client size can change the price a lot.</p>
         </div>
@@ -828,9 +967,9 @@
   </main>
 
   <section class="wrap footer-seo">
-    <span class="eyebrow">Freelance pricing, without the panic</span>
-    <h2>A softer way to handle the business side of creative work.</h2>
-    <p style="color:var(--muted); line-height:1.65; max-width:760px; font-size:1.05rem;">This toolkit is made for artists, illustrators, designers, and creative freelancers who want practical pricing guidance without feeling like they need an MBA. Start with a range, set a boundary, ask for a deposit, and send the invoice.</p>
+    <span class="eyebrow">Practical notes for creative freelancers</span>
+    <h2>Pricing creative work gets easier when the scope is clear.</h2>
+    <p style="color:var(--muted); line-height:1.65; max-width:760px; font-size:1.02rem;">This toolkit is made for artists, illustrators, designers, and creative freelancers who want practical pricing guidance without a spreadsheet-heavy process. Start with a range, set a boundary, ask for a deposit, and send the invoice.</p>
     <div class="seo-grid">
       <div class="seo-card"><h3>How much should I charge as a creative freelancer?</h3><p>Start with the project type, your experience, the client’s usage, and how many rounds of revisions are included. Project pricing is often easier than hourly pricing for creative work.</p></div>
       <div class="seo-card"><h3>Should artists charge a deposit?</h3><p>Yes. A 30–50% deposit is common for custom creative work and helps protect your time before you begin concepts, sketches, or design exploration.</p></div>
@@ -904,27 +1043,47 @@
     const scriptItems = [
       {
         title: 'Send your price confidently',
-        text: `Hi [Name],\n\nThank you again for sharing the details with me. Based on the scope, timeline, and deliverables, the project fee would be $[amount].\n\nThat includes [deliverables], plus [number] rounds of revisions. To reserve the project, I ask for a [percentage]% deposit before beginning.\n\nI’d be happy to move forward if that works for you.`
+        text: `Hi [Name],
+
+Thank you again for sharing the details with me. Based on the scope, timeline, and deliverables, the project fee would be $[amount].
+
+That includes [deliverables], plus [number] rounds of revisions. To reserve the project, I ask for a [percentage]% deposit before beginning.
+
+I’d be happy to move forward if that works for you.`
       },
       {
         title: 'Ask for a deposit',
-        text: `Hi [Name],\n\nI’m excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.\n\nOnce the deposit is received, I’ll begin the first concept round.`
+        text: `Hi [Name],
+
+I’m excited to get started. To officially book the project, I require a [percentage]% deposit, with the remaining balance due before final files are delivered.
+
+Once the deposit is received, I’ll begin the first concept round.`
       },
       {
         title: 'Respond to “that’s too expensive”',
-        text: `I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.\n\nI want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.`
+        text: `I completely understand. If the full scope is more than you were hoping to spend right now, we can simplify the deliverables to better fit your budget.
+
+I want to make sure the project still feels thoughtful and sustainable, so I’d rather adjust the scope than rush or undercut the work.`
       },
       {
         title: 'Set revision boundaries',
-        text: `This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.\n\nThat keeps the process clear and helps make sure we stay aligned with the original scope.`
+        text: `This project includes [number] rounds of revisions. After that, additional revisions are billed at $[rate]/hour or quoted separately depending on the change.
+
+That keeps the process clear and helps make sure we stay aligned with the original scope.`
       },
       {
         title: 'Politely decline a bad fit',
-        text: `Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.\n\nI really appreciate you reaching out and wish you the best with it.`
+        text: `Thank you so much for thinking of me. After looking over the project, I don’t think I’m the best fit for what you need right now.
+
+I really appreciate you reaching out and wish you the best with it.`
       },
       {
         title: 'Follow up on unpaid invoice',
-        text: `Hi [Name],\n\nJust following up on invoice [invoice number], which was due on [date]. Whenever you have a chance, please let me know when I can expect payment.\n\nThank you!`
+        text: `Hi [Name],
+
+Just following up on invoice [invoice number], which was due on [date]. Whenever you have a chance, please let me know when I can expect payment.
+
+Thank you!`
       }
     ];
 
@@ -936,6 +1095,44 @@
       { title: 'Custom illustration', range: '$180–$2,800+', body: 'Consider detail level, usage rights, turnaround, number of concepts, and whether the client needs commercial licensing.' },
       { title: 'Social media templates', range: '$150–$3,000+', body: 'Small template packs are lower cost. Larger content systems with brand strategy, captions, and multiple formats should cost more.' }
     ];
+
+    const promptBank = {
+      logo: {
+        calm: ['Explore a quiet symbol with soft geometry, generous spacing, and one memorable negative-space detail.', 'Create a wordmark direction with subtle custom letter changes instead of a complicated icon.', 'Try a mark inspired by one natural element, simplified until it feels almost effortless.'],
+        playful: ['Sketch a friendly mascot-adjacent mark that feels charming but not childish.', 'Create three icon ideas using rounded shapes, imperfect symmetry, and a small unexpected detail.', 'Try a hand-drawn wordmark with one letter doing something memorable.'],
+        premium: ['Use restrained typography, one elegant symbol, and a palette with no more than two main colors.', 'Explore a monogram or abstract mark that would still work embossed, stamped, or very small.', 'Create a direction that feels expensive because it is simple, not because it is decorative.'],
+        earthy: ['Build around an organic line, natural texture, or botanical-inspired shape without becoming too literal.', 'Try a grounded palette and a mark that feels handmade but still clean.', 'Create a logo direction that could live on paper packaging, linen, or a small shop sign.'],
+        bold: ['Create a high-contrast mark with one strong silhouette that is recognizable from far away.', 'Try an oversized wordmark treatment with a small icon detail for balance.', 'Make one concept that is intentionally simple enough to be remembered after one glance.']
+      },
+      illustration: {
+        calm: ['Use a limited palette, lots of breathing room, and a soft focal point.', 'Create a composition where the quiet negative space is part of the feeling.', 'Try a gentle scene that suggests emotion through posture, light, or environment.'],
+        playful: ['Push the proportions slightly and add one visual joke or charming small detail.', 'Create a scene with movement, character, and an object that tells a tiny story.', 'Try three thumbnail compositions before choosing the most expressive one.'],
+        premium: ['Use fewer elements, stronger composition, and refined contrast.', 'Create a polished editorial direction with intentional texture and controlled detail.', 'Let the concept do more work than decoration.'],
+        earthy: ['Bring in organic shapes, natural textures, and a palette that feels sun-warmed or grounded.', 'Create a scene inspired by plants, animals, landscape, or slow living.', 'Try a hand-rendered texture that makes the piece feel tactile.'],
+        bold: ['Choose one strong focal shape and build the composition around it.', 'Use scale contrast: make one element unexpectedly large or close.', 'Try a poster-like layout with clear hierarchy and graphic impact.']
+      },
+      social: {
+        calm: ['Create a carousel with one idea per slide, quiet spacing, and minimal copy.', 'Use a soft background, one strong headline, and a simple closing prompt.', 'Make the post feel like a deep breath, not an announcement.'],
+        playful: ['Use a simple recurring character, sticker-like detail, or cheeky headline.', 'Create a list post with charming labels and a casual tone.', 'Make one slide visually unexpected so it feels shareable.'],
+        premium: ['Use minimal copy, editorial spacing, and one refined visual detail.', 'Create a post that feels like a page from a tasteful magazine.', 'Use a restrained palette and let the headline carry the confidence.'],
+        earthy: ['Use natural textures, warm neutrals, and imperfect shapes.', 'Create a post that feels handmade but still organized.', 'Use a photo crop or illustration detail that feels grounded and human.'],
+        bold: ['Use a strong headline, large type, and a clear point of view.', 'Make the first slide impossible to ignore but keep the rest clean.', 'Use contrast and scale instead of clutter.']
+      },
+      product: {
+        calm: ['Create a design someone would want to live with every day, not just notice once.', 'Use a small motif, thoughtful placement, and a quiet color story.', 'Try a design that feels giftable, useful, and not overly trendy.'],
+        playful: ['Create a design with a tiny phrase, character, or icon that feels collectible.', 'Try a pattern with imperfect spacing and one surprise element.', 'Make the design feel like it has a personality without becoming too niche.'],
+        premium: ['Use fewer elements, better spacing, and a restrained palette.', 'Create a design that could work on packaging, apparel, and a small tag.', 'Focus on proportion and material compatibility.'],
+        earthy: ['Use botanical, animal, landscape, or natural texture references in a simplified way.', 'Try a warm palette and a design that feels handmade but elevated.', 'Create a motif that could become a repeat pattern.'],
+        bold: ['Make one simple graphic element oversized and memorable.', 'Use high contrast and strong placement rather than lots of detail.', 'Create a design that reads clearly from across a room.']
+      },
+      website: {
+        calm: ['Create a homepage with one clear promise, soft hierarchy, and fewer choices.', 'Use generous spacing and one warm human detail to build trust.', 'Make the page feel easy to understand in the first five seconds.'],
+        playful: ['Add small moments of charm through microcopy, icons, or section names.', 'Create a homepage that feels approachable without losing clarity.', 'Use a friendly visual system that makes boring information easier to digest.'],
+        premium: ['Use editorial spacing, restrained type, and fewer but stronger sections.', 'Make the offer feel high-trust through clarity, not hype.', 'Create a page that feels considered from top to bottom.'],
+        earthy: ['Use natural texture, warm neutrals, and grounded language.', 'Build sections that feel calm, tactile, and easy to move through.', 'Use subtle organic shapes without hurting readability.'],
+        bold: ['Open with a strong headline and one unmistakable call to action.', 'Use scale, contrast, and clear sections to create momentum.', 'Make the page feel decisive, not busy.']
+      }
+    };
 
     function money(n) {
       return '$' + Math.round(n).toLocaleString();
@@ -1008,7 +1205,7 @@
         <article class="script-card">
           <h3>${item.title}</h3>
           <div class="script-text" id="script-${index}">${item.text}</div>
-          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary" onclick="copyText(document.getElementById('script-${index}').textContent, 'Script copied')">Copy script</button></div>
+          <div class="cta-row" style="margin-top:12px;"><button class="btn secondary small" onclick="copyText(document.getElementById('script-${index}').textContent, 'Script copied')">Copy script</button></div>
         </article>
       `).join('');
     }
@@ -1018,10 +1215,34 @@
       grid.innerHTML = exampleItems.map(item => `
         <article class="example-card">
           <h3>${item.title}</h3>
-          <p style="font-size:1.65rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item.range}</p>
+          <p style="font-size:1.45rem; color:var(--ink); font-family:Georgia,serif; letter-spacing:-.05em; margin:8px 0;">${item.range}</p>
           <p>${item.body}</p>
         </article>
       `).join('');
+    }
+
+    function generatePrompts() {
+      const type = document.getElementById('promptType').value;
+      const mood = document.getElementById('promptMood').value;
+      const audience = document.getElementById('promptAudience').value || 'this client';
+      const prompts = promptBank[type][mood];
+      const output = document.getElementById('promptOutput');
+      output.innerHTML = `
+        <h3>Starting directions for ${audience}</h3>
+        <ol class="prompt-list">
+          ${prompts.map(prompt => `<li>${prompt}</li>`).join('')}
+        </ol>
+        <div class="locked-note">
+          Want a more complete direction? The paid pack can include expanded prompts, palette ideas, composition notes, and client presentation language.
+        </div>
+        <div class="cta-row" style="margin-top:14px;"><button class="btn secondary small" id="copyPromptsBtn">Copy prompts</button></div>
+      `;
+      document.getElementById('copyPromptsBtn').addEventListener('click', () => {
+        copyText(`Creative directions for ${audience}:
+
+` + prompts.map((p, i) => `${i + 1}. ${p}`).join('
+'), 'Prompts copied');
+      });
     }
 
     document.querySelectorAll('[data-tab-target]').forEach(btn => {
@@ -1063,9 +1284,25 @@
       const invoiceNumber = document.getElementById('invoiceNumber').value || 'INV-001';
       const amount = money(Number(document.getElementById('invoiceAmount').value || 0));
       const due = document.getElementById('dueDate').value || '[due date]';
-      const text = `Hi ${client},\n\nI’ve attached invoice ${invoiceNumber} for ${amount}. Payment is due by ${due}.\n\nThank you again — I appreciate it!`;
+      const text = `Hi ${client},
+
+I’ve attached invoice ${invoiceNumber} for ${amount}. Payment is due by ${due}.
+
+Thank you again — I appreciate it!`;
       copyText(text, 'Invoice email copied');
     });
+
+    document.getElementById('proToggle').addEventListener('change', function() {
+      document.getElementById('invoicePreview').classList.toggle('pro', this.checked);
+      if (this.checked) showToast('Pro style preview on');
+    });
+
+    document.getElementById('paidPackLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      showToast('Add your payment link here');
+    });
+
+    document.getElementById('generatePrompts').addEventListener('click', generatePrompts);
 
     ['businessName','businessEmail','clientName','invoiceNumber','projectDescription','invoiceAmount','dueDate','paymentNotes'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateInvoice);
